@@ -530,3 +530,26 @@ diagnozy na urzadzeniu:
   wiec moze pokazywac stare, zepsute wersje sliderow. Do testu otwierac
   link z dopiskiem ?x=numer lub ?debug=1, albo "Otworz w przegladarce".
 - Wersja plikow: ?v=20261019w. Paczka do wgrania odswiezona.
+
+2026-10-19  SLIDERY: PLYNNE PRZEJSCIE NA TELEFONIE I PETLA JAK KARUZELA
+Zgloszenie Kamila: animacja na telefonie jest powolna i bardzo klatkuje;
+petla ma wygladac tak, ze klikniecie w prawo na koncu daje przesuniecie
+wszystkiego w lewo na pierwszy element.
+- Przyczyna klatkowania: skrypt przewijal pasek w kazdej klatce (rAF),
+  dodatkowo kazde przesuniecie przelaczalo klasy i przejscia skali
+  slajdow. Na telefonie to praca na glownym watku w kazdej klatce.
+- Nowe przejscie (technika FLIP): pasek przeskakuje od razu na cel, a
+  zawartosc slajdow "dojezdza" animacja transform: translate3d od starej
+  pozycji do zera, 360 ms, krzywa cubic-bezier(.22,.8,.3,1). Animacja
+  dziala na GPU (kompozytor), skrypt nie robi nic w klatkach.
+- Usuniete skalowanie slajdow (kolidowalo z transformem przejscia i
+  obciazalo). Zostaje przygaszenie sasiednich elementow (opacity).
+- Petla: z ostatniego elementu strzalka w prawo jedzie dalej w lewo na
+  pierwszy (klon z prawej strony), po animacji niewidoczny przeskok do
+  oryginalu; strzalka w lewo z pierwszego analogicznie na ostatni.
+  Zweryfikowane: start 6, kolejne next az do ostatniego, next z
+  ostatniego -> klon, po animacji oryginal #0; prev z pierwszego -> klon
+  ostatniego -> oryginal ostatni. Kropki dzialaja tak samo.
+- Przesuwanie palcem dalej natywne (bez zmian).
+- Reduced-motion: bez animacji. Awaryjny tryb natywny bez zmian.
+- Wersja plikow: ?v=20261019x. Paczka do wgrania odswiezona.

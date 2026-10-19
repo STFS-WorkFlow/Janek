@@ -299,8 +299,8 @@ a,button,summary{touch-action:manipulation}
   .slider-track>*{flex:0 0 84%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
   .slider-track>.slide{display:flex}
   /* animacja jest na elemencie wewnatrz slajdu */
-  .slide>*{flex:1 1 auto;min-width:0;transform:scale(.95);opacity:.72;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .45s ease}
-  .slide.is-active>*{transform:none;opacity:1}
+  .slide>*{flex:1 1 auto;min-width:0;opacity:.7;transition:opacity .3s ease}
+  .slide.is-active>*{opacity:1}
   .slider-track img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
   .slider-track.process>*{flex-basis:78%}
   .slider-track.process .step{padding:22px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}

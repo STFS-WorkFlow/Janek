@@ -143,38 +143,43 @@
       slides.forEach(function (s, k) { s.classList.toggle('is-active', k === g); });
       dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
     }
-    // wlasna animacja przewijania (rAF) zamiast scrollTo smooth: smooth + scroll-snap bywa zawodny w Safari/iOS.
-    // Na czas animacji scroll-snap jest wylaczony, potem wraca i dociska do slajdu.
-    var anim = 0;
-    function stopAnim() {
-      if (anim) { cancelAnimationFrame(anim); anim = 0; }
-      track.style.scrollSnapType = '';
+    // Przejscie strzalek/kropek (technika FLIP): pasek przeskakuje od razu na cel, a zawartosc
+    // plynnie "dojezdza" animacja transform (GPU, bez pracy skryptu w kazdej klatce, wiec bez klatkowania).
+    // Transform jest na elemencie WEWNATRZ slajdu, nie na slajdzie zatrzaskujacym (scroll-snap).
+    var flipping = false, flipTimer = 0;
+    function clearFlip() {
+      if (flipTimer) { clearTimeout(flipTimer); flipTimer = 0; }
+      if (flipping) {
+        flipping = false;
+        slides.forEach(function (s) {
+          var el = s.firstElementChild;
+          if (el) { el.style.transition = ''; el.style.transform = ''; }
+        });
+      }
     }
     function animateTo(x) {
-      stopAnim();
-      var start = track.scrollLeft, dist = x - start;
+      clearFlip();
+      var before = track.scrollLeft;
+      track.scrollLeft = x;
+      var dist = track.scrollLeft - before;
       if (Math.abs(dist) < 1) return;
-      var dur = Math.min(560, 280 + Math.abs(dist) * 0.2), t0 = 0;
-      track.style.scrollSnapType = 'none';
-      function frame(ts) {
-        if (!t0) t0 = ts;
-        var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-        track.scrollLeft = start + dist * e;
-        if (p < 1) { anim = requestAnimationFrame(frame); }
-        else { anim = 0; track.style.scrollSnapType = ''; track.scrollLeft = x; setTimeout(normalize, 160); }
-      }
-      anim = requestAnimationFrame(frame);
+      var inners = slides.map(function (s) { return s.firstElementChild; });
+      inners.forEach(function (el) { el.style.transition = 'none'; el.style.transform = 'translate3d(' + dist + 'px,0,0)'; });
+      void track.offsetWidth;
+      flipping = true;
+      inners.forEach(function (el) { el.style.transition = 'transform 360ms cubic-bezier(.22,.8,.3,1), opacity .3s ease'; el.style.transform = 'translate3d(0,0,0)'; });
+      flipTimer = setTimeout(function () { flipTimer = 0; clearFlip(); normalize(); }, 400);
     }
     function go(g, smooth) {
       target = g;
       if (smooth && !calm) { animateTo(leftOf(g)); }
-      else { stopAnim(); track.scrollLeft = leftOf(g); }
+      else { clearFlip(); track.scrollLeft = leftOf(g); }
     }
-    track.addEventListener('touchstart', stopAnim, { passive: true });
-    track.addEventListener('wheel', stopAnim, { passive: true });
+    track.addEventListener('touchstart', clearFlip, { passive: true });
+    track.addEventListener('wheel', clearFlip, { passive: true });
     // po zatrzymaniu przewijania: jesli jestesmy w zestawie klonow, przeskocz (niewidocznie) do oryginalow
     function normalize() {
-      if (!built || anim) return;
+      if (!built || flipping) return;
       var g = nearest();
       if (g < n || g >= 2 * n) {
         var gg = g < n ? g + n : g - n;
