@@ -78,8 +78,7 @@ section{padding:90px 0;scroll-margin-top:var(--header-h)}
 .card{border:1px solid var(--line);border-radius:18px;padding:27px;background:#fff}
 .card h3{font-size:21px;margin:12px 0}
 .card p{color:var(--muted);margin:0}
-.num{display:flex;align-items:center;gap:10px;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
-.num b{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 6px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;letter-spacing:0}
+.num{display:block;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
 .dark{background:#111827;color:#fff}
 .dark .eyebrow{color:#9fb8d6}
 .dark .section-head p,.dark .card p{color:#b8c0cc}

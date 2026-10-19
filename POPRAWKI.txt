@@ -596,3 +596,16 @@ petla.
   -767 px do 0, 850 ms), prev -> krok 4 (+767 px do 0), kropka 2. Brak
   klonow w procesie, oferta nadal z 12 klonami, brak bledow.
 - Wersja plikow: ?v=20261019zb. Paczka do wgrania odswiezona.
+
+2026-10-19  KARTY OFERTY: BEZ NUMERACJI 01 DO 06 (DESKTOP I TELEFON)
+Zgloszenie Kamila: na zwyklej stronie (PC) karty oferty tez maja
+numeracje 01 do 06 w kolkach.
+- Usuniete numery z 6 kart oferty (dotyczy tez slidera na telefonie, bo to
+  to samo HTML). Zostala sama etykieta kategorii: FIRMY, ZDROWIE, RODZINA,
+  WLASCICIELE, ANALIZA, EDUKACJA, teraz w kolorze granatu (wczesniej
+  szary), bez kolka.
+- Przeszukane tez cala strone pod katem pozostalych ozdobnych numerow "0N":
+  nie ma wiecej. Zostaja tylko cyfry 1 do 4 w kolkach w kroku "Jak
+  pracuje" (zaakceptowane) oraz oznaczenia odcinkow YouTube (#15, #13,
+  #17) w opisach.
+- Wersja plikow: ?v=20261019zd. Paczka do wgrania odswiezona.
