@@ -633,3 +633,28 @@ Zakres wskazany przez Kamila (z listy "mozna od reki"):
   og:image, og:url, JSON-LD Person), robots.txt, sitemap.xml.
 - Wersja plikow: ?v=20261019ze. Paczka do wgrania odswiezona (doszly
   404.html i apple-touch-icon.png).
+
+2026-10-19  POLITYKA PRYWATNOSCI: UZUPELNIENIE (BEZ PÓL DO UZUPELNIENIA)
+Przeglad wykazal, ze tekst byl zgodny z dzialaniem strony (brak formularzy,
+cookies, pamieci lokalnej, osadzonych odtwarzaczy, analityki i
+zewnetrznych czcionek, sprawdzone przeszukaniem plikow), ale brakowalo
+elementow obowiazku informacyjnego z art. 13 RODO. Dopisane:
+- 2. Jakie dane i po co: opis prawnie uzasadnionego interesu (komunikacja
+  z osobami, ktore sie kontaktuja, przedstawienie oferty, bezpieczenstwo i
+  dzialanie strony).
+- 3. (nowy) Dobrowolnosc podania danych i decyzje zautomatyzowane: podanie
+  danych jest dobrowolne, ale potrzebne do odpowiedzi i oferty; logi
+  serwera powstaja automatycznie; brak decyzji zautomatyzowanych i
+  profilowania.
+- 7. (nowy) Linki do innych serwisow: LinkedIn, YouTube, stfs.pl to
+  osobne serwisy z wlasnymi politykami; strona nie osadza ich odtwarzaczy
+  ani wtyczek, wiec samo wyswietlenie strony nie przekazuje im danych.
+- Przenumerowane punkty 1 do 8, data aktualizacji 19.10.2026.
+- NIE zmienione (potrzebne dane od Jana): administrator (adres, NIP, numer
+  w rejestrze agentow) i nazwy dostawcow hostingu i poczty. Po wgraniu na
+  docelowy hosting dopisac zdanie, kto przetwarza logi i w jakim kraju
+  (dzis strona stoi na GitHub Pages).
+- Zalecane: przeglad calosci przez osobe znajaca prawo ochrony danych
+  (agent ubezpieczeniowy, rola PZU jako odrebnego administratora w
+  umowach).
+- Wersja plikow: ?v=20261019zf. Paczka do wgrania odswiezona.
