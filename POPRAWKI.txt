@@ -489,3 +489,24 @@ Wszystko dzialalo w skryptach testowych, ale nie przy prawdziwym dotyku.
   przesunelo slider o jeden element; otwarty panel nadal klikalny.
 - Dotyczylo tez desktopu (zablokowany obszar w prawym dolnym rogu).
 - Wersja plikow: ?v=20261019t. Paczka do wgrania odswiezona.
+
+2026-10-19  SLIDERY: PRZEGLADARKA MESSENGERA, WLASNA ANIMACJA, TRYB DIAGNOSTYCZNY
+Informacja od Kamila: slidery dzialaja w Google (Chrome), ale nie dzialaja w
+przegladarce wbudowanej w Messengera (otwarcie linku z wiadomosci).
+Przegladarki wbudowane w aplikacje (Messenger, Facebook) maja ograniczenia
+i nie pokazuja konsoli bledow. Dzialania:
+- Przewijanie strzalkami i kropkami wlasna animacja (rAF, 0,28 do 0,56 s,
+  krzywa wyhamowania) zamiast scrollTo smooth. Na czas ruchu scroll-snap jest
+  wylaczony i wraca na koncu. Smooth scrollTo razem ze scroll-snap bywa
+  zawodny w Safari i przegladarkach wbudowanych. Dotyk lub kolko myszy
+  przerywa animacje.
+- Przeskoki bez scrollTo({behavior:'instant'}), przez przypisanie
+  scrollLeft (brak ryzyka bledu na starszych silnikach).
+- Budowa kazdego slidera w try/catch: blad jednego nie zatrzymuje reszty
+  strony.
+- TRYB DIAGNOSTYCZNY: dopisz ?debug=1 do adresu strony, a u gory ekranu
+  pojawi sie czarna ramka z: przegladarka (UA), rozmiar okna, wsparcie
+  funkcji JS i CSS, status budowy kazdego slidera, wszystkie bledy JS oraz
+  dziennik dotkniec i klikniec (np. "klik: BUTTON.s-btn next"). Sluzy do
+  wysledzenia, co nie dziala w Messengerze. Bez ?debug=1 niewidoczny.
+- Wersja plikow: ?v=20261019v. Paczka do wgrania odswiezona.

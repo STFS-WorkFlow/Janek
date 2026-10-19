@@ -1,4 +1,26 @@
 (function () {
+  // Tryb diagnostyczny: dodaj ?debug=1 do adresu, zeby zobaczyc bledy i obslugiwane funkcje
+  // (przydatne w przegladarkach wbudowanych w aplikacje, np. Messenger, ktore nie maja konsoli).
+  if (/[?&]debug\b/.test(location.search)) {
+    var dbg = document.createElement('pre');
+    dbg.style.cssText = 'position:fixed;left:0;right:0;top:0;max-height:50vh;overflow:auto;margin:0;padding:10px;background:#111;color:#9f9;font:11px/1.4 monospace;z-index:99999;white-space:pre-wrap;word-break:break-all';
+    document.body.appendChild(dbg);
+    window.__dlog = function (m) { dbg.textContent += m + '\n'; };
+    var sup = function (p, v) { try { return window.CSS && CSS.supports ? CSS.supports(p, v) : 'n/a'; } catch (e) { return 'err'; } };
+    __dlog('UA: ' + navigator.userAgent);
+    __dlog('okno: ' + innerWidth + 'x' + innerHeight + ', dpr ' + (window.devicePixelRatio || 1) + ', hover:none=' + matchMedia('(hover:none)').matches);
+    __dlog('JS: scrollTo=' + typeof Element.prototype.scrollTo + ' IO=' + typeof window.IntersectionObserver + ' rAF=' + typeof window.requestAnimationFrame + ' mql.addEventListener=' + typeof matchMedia('(max-width:800px)').addEventListener);
+    __dlog('CSS: snap=' + sup('scroll-snap-type', 'x mandatory') + ' aspect-ratio=' + sup('aspect-ratio', '1/1') + ' inset=' + sup('inset', '0') + ' gap(flex)=' + sup('gap', '1px'));
+    window.addEventListener('error', function (e) { __dlog('BLAD: ' + e.message + ' @' + String(e.filename || '').split('/').pop() + ':' + e.lineno); });
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      __dlog('klik: ' + (t.tagName || '') + '.' + (typeof t.className === 'string' ? t.className : ''));
+    }, true);
+    document.addEventListener('touchstart', function (e) {
+      var t = e.target;
+      __dlog('dotyk: ' + (t.tagName || '') + '.' + (typeof t.className === 'string' ? t.className : ''));
+    }, { passive: true, capture: true });
+  }
   var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   var calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if (fine && !calm && !window.matchMedia('(max-width:800px)').matches && 'IntersectionObserver' in window) {
@@ -73,6 +95,7 @@
   // bo transform na elemencie z scroll-snap zmienia punkty zatrzasku i pasek "wraca" (nie dalo sie przesuwac).
   var mqSlider = window.matchMedia('(max-width:800px)');
   document.querySelectorAll('.cards, .process, .media').forEach(function (track) {
+   try {
     var items = Array.prototype.slice.call(track.children);
     var n = items.length;
     if (n < 2) return;
@@ -116,18 +139,43 @@
       slides.forEach(function (s, k) { s.classList.toggle('is-active', k === g); });
       dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
     }
+    // wlasna animacja przewijania (rAF) zamiast scrollTo smooth: smooth + scroll-snap bywa zawodny w Safari/iOS.
+    // Na czas animacji scroll-snap jest wylaczony, potem wraca i dociska do slajdu.
+    var anim = 0;
+    function stopAnim() {
+      if (anim) { cancelAnimationFrame(anim); anim = 0; }
+      track.style.scrollSnapType = '';
+    }
+    function animateTo(x) {
+      stopAnim();
+      var start = track.scrollLeft, dist = x - start;
+      if (Math.abs(dist) < 1) return;
+      var dur = Math.min(560, 280 + Math.abs(dist) * 0.2), t0 = 0;
+      track.style.scrollSnapType = 'none';
+      function frame(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+        track.scrollLeft = start + dist * e;
+        if (p < 1) { anim = requestAnimationFrame(frame); }
+        else { anim = 0; track.style.scrollSnapType = ''; track.scrollLeft = x; setTimeout(normalize, 160); }
+      }
+      anim = requestAnimationFrame(frame);
+    }
     function go(g, smooth) {
       target = g;
-      track.scrollTo({ left: leftOf(g), behavior: (smooth && !calm) ? 'smooth' : 'instant' });
+      if (smooth && !calm) { animateTo(leftOf(g)); }
+      else { stopAnim(); track.scrollLeft = leftOf(g); }
     }
+    track.addEventListener('touchstart', stopAnim, { passive: true });
+    track.addEventListener('wheel', stopAnim, { passive: true });
     // po zatrzymaniu przewijania: jesli jestesmy w zestawie klonow, przeskocz (niewidocznie) do oryginalow
     function normalize() {
-      if (!built) return;
+      if (!built || anim) return;
       var g = nearest();
       if (g < n || g >= 2 * n) {
         var gg = g < n ? g + n : g - n;
         var shift = leftOf(gg) - leftOf(g);
-        track.scrollTo({ left: track.scrollLeft + shift, behavior: 'instant' });
+        track.scrollLeft = track.scrollLeft + shift;
         g = gg;
       }
       target = g;
@@ -190,6 +238,11 @@
       }, 150);
     });
     sync();
+    if (window.__dlog) { __dlog('slider ' + track.className + ': ' + (built ? 'zbudowany, slajdow ' + slides.length : 'NIE zbudowany') + ', scrollWidth=' + track.scrollWidth + ' clientWidth=' + track.clientWidth); }
+   } catch (err) {
+    if (window.__dlog) { __dlog('BLAD slidera: ' + err.message); }
+    if (window.console && console.error) { console.error(err); }
+   }
   });
 
   var burger = document.getElementById('burger');
