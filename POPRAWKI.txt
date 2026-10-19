@@ -658,3 +658,27 @@ elementow obowiazku informacyjnego z art. 13 RODO. Dopisane:
   (agent ubezpieczeniowy, rola PZU jako odrebnego administratora w
   umowach).
 - Wersja plikow: ?v=20261019zf. Paczka do wgrania odswiezona.
+
+2026-10-19  WPIS W REJESTRZE KNF I DANE ADMINISTRATORA
+Dane pobrane z publicznego rejestru posrednikow ubezpieczeniowych KNF
+(rpu.knf.gov.pl, rekord agenta 11220665/A): firma JAN BORSA, NIP
+6312495977, miejsce wykonywania dzialalnosci Gliwice, zaklad ubezpieczen:
+Powszechny Zaklad Ubezpieczen na Zycie S.A. (Uwaga: wczesniej zakladalismy
+Bielsko-Biala, rejestr podaje Gliwice.)
+- Blok kontaktowy (index.html): pod danymi Jana dopisek "Agent
+  ubezpieczeniowy wpisany do rejestru KNF pod numerem 11220665/A,
+  dzialajacy na rzecz Powszechnego Zakladu Ubezpieczen na Zycie S.A." oraz
+  link "Sprawdz w rejestrze KNF"
+  (https://rpu.knf.gov.pl/search/agent/11220665%2FA/363463, nowa karta,
+  rel=noopener). Link jest w jednym miejscu w kodzie. UWAGA: KNF zmienil
+  juz raz adres rejestru (au.knf.gov.pl -> rpu.knf.gov.pl); sprawdzac link
+  co jakis czas, numer agenta zostaje obok jako zapasowy sposob wyszukania.
+- Polityka prywatnosci, pkt 1: administrator opisany danymi z rejestru
+  (firma, NIP, Gliwice, numer wpisu, reprezentowany zaklad). Zostaly 2 pola
+  do uzupelnienia: adres do korespondencji (celowo NIE wpisany; w rejestrze
+  jest adres dzialalnosci, ktory u jednoosobowej firmy bywa adresem
+  domowym, wiec wymaga zgody Jana) i nazwy dostawcow hostingu i poczty.
+- Polityka, pkt 7: do listy linkow zewnetrznych dodany rejestr KNF.
+- Do potwierdzenia z Janem przed publikacja: poprawnosc danych i zgoda na
+  ich pokazanie.
+- Wersja plikow: ?v=20261019zg. Paczka do wgrania odswiezona.

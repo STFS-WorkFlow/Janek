@@ -319,3 +319,8 @@ a,button,summary{touch-action:manipulation}
 /* widget pomocy: kontener nie moze blokowac klikniec pod soba (zamkniety panel zajmuje miejsce, ale jest niewidoczny) */
 .help-widget{pointer-events:none}
 .help-widget .help-toggle,.help-widget .help-panel.open{pointer-events:auto}
+/* wpis w rejestrze KNF w bloku kontaktowym */
+.contact-who .reg{margin:16px 0 0;font-size:14px;line-height:1.55;color:var(--muted)}
+.contact-who .reg strong{color:var(--ink)}
+.contact-who .reg a{display:inline-block;margin-top:6px;color:var(--accent);font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
+.contact-who .reg a:hover{color:#0f2b49}
