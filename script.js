@@ -113,12 +113,15 @@
     ui.innerHTML = '<button type="button" class="s-btn prev" aria-label="Poprzedni">&#8249;</button><div class="s-dots"></div><button type="button" class="s-btn next" aria-label="Następny">&#8250;</button>';
     wrap.appendChild(ui);
     var dotsEl = ui.querySelector('.s-dots');
+    // "Jak pracuje" to proces (kroki 1 do 4), a nie petla: bez klonow, na koncu strzalka cofa na poczatek
+    var loop = !track.classList.contains('process');
     var dots = items.map(function (_, i) {
       var d = document.createElement('button');
       d.type = 'button';
       d.className = 's-dot';
       d.setAttribute('aria-label', 'Element ' + (i + 1) + ' z ' + n);
       d.addEventListener('click', function () {
+        if (!loop) { go(i, true); return; }
         var delta = (((i - (cur % n)) % n) + n) % n;
         if (delta > n / 2) delta -= n;
         go(target + delta, true);
@@ -149,6 +152,7 @@
     var flipping = false, flipTimer = 0;
     function clearFlip() {
       if (flipTimer) { clearTimeout(flipTimer); flipTimer = 0; }
+      track.style.scrollSnapType = '';
       if (flipping) {
         flipping = false;
         slides.forEach(function (s) {
@@ -160,15 +164,17 @@
     function animateTo(x) {
       clearFlip();
       var before = track.scrollLeft;
+      track.style.scrollSnapType = 'none';
       track.scrollLeft = x;
       var dist = track.scrollLeft - before;
-      if (Math.abs(dist) < 1) return;
+      if (Math.abs(dist) < 1) { track.style.scrollSnapType = ''; return; }
       var inners = slides.map(function (s) { return s.firstElementChild; });
       inners.forEach(function (el) { el.style.transition = 'none'; el.style.transform = 'translate3d(' + dist + 'px,0,0)'; });
       void track.offsetWidth;
       flipping = true;
-      inners.forEach(function (el) { el.style.transition = 'transform 620ms cubic-bezier(.45,0,.2,1)'; el.style.transform = 'translate3d(0,0,0)'; });
-      flipTimer = setTimeout(function () { flipTimer = 0; clearFlip(); normalize(); }, 660);
+      var dur = Math.abs(dist) > 450 ? 850 : 620;
+      inners.forEach(function (el) { el.style.transition = 'transform ' + dur + 'ms cubic-bezier(.45,0,.2,1)'; el.style.transform = 'translate3d(0,0,0)'; });
+      flipTimer = setTimeout(function () { flipTimer = 0; clearFlip(); normalize(); }, dur + 40);
     }
     function go(g, smooth) {
       target = g;
@@ -181,7 +187,7 @@
     function normalize() {
       if (!built || flipping) return;
       var g = nearest();
-      if (g < n || g >= 2 * n) {
+      if (loop && (g < n || g >= 2 * n)) {
         var gg = g < n ? g + n : g - n;
         var shift = leftOf(gg) - leftOf(g);
         track.scrollLeft = track.scrollLeft + shift;
@@ -213,14 +219,15 @@
         s.appendChild(it);
         return s;
       });
-      var before = orig.map(cloneSlide), after = orig.map(cloneSlide);
+      var before = loop ? orig.map(cloneSlide) : [], after = loop ? orig.map(cloneSlide) : [];
       before.forEach(function (c) { track.insertBefore(c, orig[0]); });
       after.forEach(function (c) { track.appendChild(c); });
       slides = before.concat(orig, after);
       built = true;
       padL = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-      go(n, false);
-      setActive(n);
+      var start0 = loop ? n : 0;
+      go(start0, false);
+      setActive(start0);
     }
     function destroy() {
       built = false;
@@ -235,8 +242,8 @@
     track.addEventListener('scroll', onScroll, { passive: true });
     track.addEventListener('scrollend', normalize);
     // gdyby budowa petli sie nie udala: strzalki dalej przewijaja zwykly, natywny pasek
-    ui.querySelector('.prev').addEventListener('click', function () { if (built) { go(target - 1, true); } else { track.scrollLeft -= track.clientWidth * 0.84; } });
-    ui.querySelector('.next').addEventListener('click', function () { if (built) { go(target + 1, true); } else { track.scrollLeft += track.clientWidth * 0.84; } });
+    ui.querySelector('.prev').addEventListener('click', function () { if (built) { var g = target - 1; if (!loop && g < 0) g = n - 1; go(g, true); } else { track.scrollLeft -= track.clientWidth * 0.84; } });
+    ui.querySelector('.next').addEventListener('click', function () { if (built) { var g = target + 1; if (!loop && g > n - 1) g = 0; go(g, true); } else { track.scrollLeft += track.clientWidth * 0.84; } });
     if (mqSlider.addEventListener) { mqSlider.addEventListener('change', sync); } else if (mqSlider.addListener) { mqSlider.addListener(sync); }
     var rz = 0;
     window.addEventListener('resize', function () {

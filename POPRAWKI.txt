@@ -576,3 +576,23 @@ szuflady menu byla niepotrzebna i nie odpowiadala niczemu.
   Porozmawiajmy).
 - Zasada zapisana w pamieci: bez ozdobnej numeracji 01 02 i ukosnikow.
 - Wersja plikow: ?v=20261019z. Paczka do wgrania odswiezona.
+
+2026-10-19  "JAK PRACUJE": PROCES, NIE PETLA
+Zgloszenie Kamila: z ostatniego kroku (4) klikniecie w prawo nie moze
+wjezdzac krokiem 1 z prawej strony, tylko ma przewinac wszystko z
+powrotem na krok 1; analogicznie w lewo z kroku 1 na 4. To proces, nie
+petla.
+- Slider "Jak pracuje" bez klonow (tryb "proces"): kroki 1, 2, 3, 4 w
+  jednej linii. Strzalka w prawo z kroku 4 przewija caly pasek wstecz do
+  kroku 1 (animacja 850 ms, bo dystans przez wszystkie kroki), strzalka w
+  lewo z kroku 1 przewija na krok 4. Kropki przechodza wprost do kroku.
+  Przesuwanie palcem konczy sie na krancach (bez zapetlenia).
+- Slidery Oferta i Materialy (filmy) zostaja petla z klonami.
+- Przy okazji poprawka: na czas przejscia wylaczany jest scroll-snap.
+  Transform poszerzal obszar przewijania, a zatrzask odsuwal pasek na
+  skrajnych pozycjach o ok. 76 px (skok na starcie animacji).
+  Zweryfikowane: pozycja paska zgadza sie z przesunieciem animacji.
+- Sprawdzone: 3 x next do kroku 4, next -> krok 1 (start przesuniecia
+  -767 px do 0, 850 ms), prev -> krok 4 (+767 px do 0), kropka 2. Brak
+  klonow w procesie, oferta nadal z 12 klonami, brak bledow.
+- Wersja plikow: ?v=20261019zb. Paczka do wgrania odswiezona.
