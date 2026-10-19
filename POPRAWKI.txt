@@ -1,0 +1,416 @@
+STRONA JANA BORSY: DZIENNIK POPRAWEK
+Folder: SPOLKA STFS PROJEKTY\jan-borsa
+Podglad lokalny: launch.json, konfiguracja "jan-borsa", port 5002
+Kazda nowa zmiana jest dopisywana na koncu tego pliku.
+
+=====================================================================
+2026-10-18  ETAP 1: PORZADKI I ZASADY
+=====================================================================
+Punkt wyjscia: zapis strony z podgladu ChatGPT/Codex (jeden plik HTML plus
+ok. 40 plikow smieci z interfejsu ChatGPT w folderze "_files"). Z tego
+wyciagnieto wlasciwa tresc (ok. 20 linijek CSS i HTML) i zbudowano czysta
+strone: index.html, style.css, script.js. Oryginal zostal bez zmian.
+
+- Usuniete wszystkie odnosniki do sandboxa OpenAI, menu uzywa kotwic #sekcja.
+- Usuniete pauzy (em dash) z calej tresci, tytulu i meta description,
+  zamiana na dwukropek lub rozbicie zdania.
+- Cache-busting: ?v=data przy linkach do CSS i JS.
+- Menu mobilne: wczesniej nawigacja znikala na telefonie. Jest szuflada na
+  transform:translateX, numerowana lista sekcji, przycisk X, klikalne tlo,
+  zamykanie klawiszem Escape, blokada scrolla tla.
+- Siatki: min-width:0 dla kazdego potomka grid, wszystkie siatki zwijane do
+  1 kolumny na telefonie (proces nie zostawia osieroconego 5. kroku).
+- Brak listenerow scrolla i zdjec do przycinania.
+- Sticky header, scroll-margin-top dla sekcji, link "Przejdz do tresci",
+  style :focus-visible, prefers-reduced-motion.
+- Favicon (SVG inline), og:title/description/locale, theme-color.
+- Wyzszy kontrast tekstu na ciemnych sekcjach.
+
+=====================================================================
+2026-10-18  ETAP 2: ZAAKCEPTOWANE ZMIANY Z ANKIETY (6 z 10)
+=====================================================================
+ZAAKCEPTOWANE:
+- FAQ: 6 pytan w rozwijanych blokach (details), odpowiedzi ogolne, bez cen.
+  Do zatwierdzenia przez Janka.
+- Karty materialow jako klikalne linki do YouTube.
+- Dolny pasek Zadzwon / Napisz, tylko na urzadzeniach dotykowych do 800 px,
+  chowany przy otwartym menu.
+- SEO: dane strukturalne JSON-LD (Person), canonical, og:image, twitter card,
+  sitemap.xml, robots.txt, og-image.png.
+- Polityka prywatnosci (polityka-prywatnosci.html) plus link w stopce.
+  Strona nie zbiera danych, nie uzywa cookies ani zewnetrznych skryptow.
+- Animacje pojawiania sie sekcji: tylko desktop (hover:hover, pointer:fine),
+  przez IntersectionObserver, wylaczone przy reduced-motion.
+
+ODRZUCONE: prawdziwe zdjecie Janka, formularz kontaktowy, sekcja "Dla kogo",
+rezerwacja terminu (kalendarz).
+
+=====================================================================
+2026-10-18  ETAP 3: FILMY YOUTUBE
+=====================================================================
+Kanal: https://www.youtube.com/@borsapolisa (37 filmow w dniu sprawdzenia).
+- Karty materialow prowadza do prawdziwych odcinkow, pod nimi przycisk
+  "Zobacz caly kanal na YouTube".
+- Karta Firmy: #13 "Skladowe polisy grupowej: za co placimy i czy warto?"
+  https://www.youtube.com/watch?v=pMeIC4JHuJY
+- Karta Zdrowie: #17 "Dlaczego warto zdecydowac sie na polise grupowa medyczna?"
+  https://www.youtube.com/watch?v=3OYVxTwHnvA
+- Karta Zycie: najpierw #27 (tanie ubezpieczenia przez telefon), zamieniona
+  na #15 "Jakie swiadczenia otrzymalem dzieki ubezpieczeniu na zycie?"
+  https://www.youtube.com/watch?v=rmVHLTEjoDM
+- Brak miniatur (ikona play), zeby strona nie ladowala zasobow Google i
+  zgadzala sie z polityka prywatnosci.
+- Wersja plikow: ?v=20261018d
+
+=====================================================================
+DO UZUPELNIENIA (dane od Janka)
+=====================================================================
+- Telefon (obecnie +48 XXX XXX XXX) i e-mail (kontakt@twojadomena.pl):
+  index.html, pasek mobilny, polityka prywatnosci.
+- Domena (obecnie twojadomena.pl): canonical, og:image, JSON-LD,
+  sitemap.xml, robots.txt.
+- Polityka prywatnosci: adres dzialalnosci, NIP, numer w rejestrze agentow,
+  nazwy dostawcow hostingu i poczty (zolte pola).
+- Zatwierdzenie odpowiedzi w FAQ.
+- Do potwierdzenia z Jankiem: pakiety medyczne w ofercie.
+
+=====================================================================
+NOWE POPRAWKI (dopisywac ponizej)
+=====================================================================
+
+2026-10-18  DANE KONTAKTOWE OD JANKA
+- Telefon: 783 308 184 (tekst i linki tel:, w tym pasek mobilny).
+- E-mail: jborsa@agentpzu.pl (kontakt, przycisk "Napisz", pasek mobilny,
+  polityka prywatnosci).
+- W bloku kontaktowym dodane linki: LinkedIn
+  (https://www.linkedin.com/in/jan-teodor-borsa-3abaa2ab/) i YouTube
+  (https://www.youtube.com/@borsapolisa).
+- JSON-LD: dodane sameAs (LinkedIn, YouTube), email i telephone.
+- Wersja plikow: ?v=20261018e
+- Nadal brak: domena strony (twojadomena.pl w canonical, og:image, sitemap,
+  robots), dane do polityki prywatnosci, zatwierdzenie FAQ.
+
+2026-10-18  KAFELEK W HERO
+- Usuniety kafelek "100% konkretu" (brzmial sztucznie i nie do sprawdzenia).
+  Zamiast niego: "5 lat / jako trener sprzedazy" (fakt z opisu kanalu Janka).
+- Wersja plikow: ?v=20261018f
+
+2026-10-18  UKOSNIKI W KARTACH OFERTY
+- "01 / FIRMY" zamienione na numer w kolku (akcentowy kolor) i obok etykieta
+  wersalikami, bez ukosnika. Dotyczy 6 kart w sekcji Oferta (index.html,
+  style.css .num).
+- Wersja plikow: ?v=20261018g
+
+2026-10-18  ANIMACJA FAQ
+- Rozwijanie i zwijanie pytan w FAQ jest animowane (300 ms, plynna zmiana
+  wysokosci i przezroczystosci odpowiedzi). Plus obraca sie w krzyzyk.
+- Animacja przez Web Animations API (script.js), bez listenerow scrolla.
+  Przy prefers-reduced-motion pytania rozwijaja sie bez animacji. Bez JS
+  dziala natywne details.
+- Zmiana w style.css: odpowiedz ma padding zamiast marginesu (potrzebne do
+  animacji wysokosci).
+- Wersja plikow: ?v=20261018l
+
+2026-10-18  FAQ: SCINKA PRZY ZWIJANIU
+- Naprawiona drobna scinka na koncu zwijania pytania: po animacji odpowiedz
+  na ulamek sekundy wracala do pelnej wysokosci, zanim blok sie zamknal.
+  Animacja zostaje w stanie koncowym (fill: forwards) az do zamkniecia
+  bloku, dopiero potem jest zdejmowana.
+- Wersja plikow: ?v=20261018l
+- Poprawka przy szybkim klikaniu: stan pytania liczony z klasy, a nie z
+  atrybutu open, wiec seria szybkich klikniec nie zostawia pytania w zlym
+  stanie. Ponowne klikniecie w trakcie animacji zaczyna od biezacej
+  wysokosci. Wersja plikow: ?v=20261018l
+
+2026-10-18  NOWE HERO (TYLKO PIERWSZY EKRAN)
+Teksty hero bez zmian. Zmieniony wyglad, zeby nie wygladal jak szablon:
+- Prawa strona: zamiast bialej karty z "JB" i trzema kafelkami jest
+  stylizowany dokument "Warunki wspolpracy / Czego tu nie znajdziesz" z
+  czterema przekreslanymi sciemami (maly druczek, gwarantowany zysk bez
+  ryzyka, najtansza oferta na rynku, presja na szybki podpis) i pieczatka
+  "Bez sciemy" na dole. Przekreslenia rysuja sie kolejno, pieczatka
+  "uderza" na koncu (CSS, jednorazowo przy wczytaniu, bez JS i bez scrolla,
+  wylaczone przy reduced-motion). Dokument lekko przechylony (1,6 stopnia).
+- Tlo hero cieplo papierowe (#f3eee4) zamiast szaro-niebieskiego gradientu.
+- Naglowek H1 w kroju szeryfowym systemowym (Iowan Old Style / Palatino /
+  Georgia, bez zewnetrznych fontow), "bez sciemy." z zoltym zakreslaczem.
+- Trzy kafelki liczb zastapione jedna linia faktow pod przyciskami,
+  oddzielona cienka kreska.
+- Reszta strony bez zmian. Zdjecie "JB" usuniete z hero.
+- Mobile: dokument pod tekstem, mniejsze czcionki, bez poziomego scrolla
+  (overflow-x: clip na hero).
+- Wersja plikow: ?v=20261018m
+
+2026-10-18  HERO: WERSJA MINIMALISTYCZNA (ZASTEPUJE POPRZEDNIA)
+Poprzednia wersja (dokument z przekreslonymi sciemami, papierowe tlo, szeryfy,
+zolty zakreslacz) odrzucona przez Kamila: za malo minimalistyczna i zmieniona
+kolorystyka. Cofnieta w calosci. Nowe hero:
+- Kolorystyka jak wczesniej: szaro-niebieski gradient i granat.
+- Uklad jednokolumnowy, duzo bialej przestrzeni, naglowek Inter wiekszy
+  (do 92 px), "bez sciemy." w granacie.
+- Bez karty i dokumentu po prawej. Jedynie bardzo blady monogram "JB" w tle
+  (ok. 4,5% krycia), dekoracja bez interakcji.
+- Linia faktow pod przyciskami: 15+ lat w branzy, 5 lat jako trener sprzedazy,
+  1:1 indywidualne podejscie, rozdzielone cienkimi pionowymi kreskami.
+- Mobile: monogram ukryty (nachodzil na tekst), fakty zwijane do kolumny ponizej 420 px.
+- Wersja plikow: ?v=20261018o
+
+2026-10-18  PROBA PRZEBUDOWY CALEJ STRONY: COFNIETA
+Zaczeta wieksza przebudowa calej strony (lista oferty, kafle materialow,
+ciemny kontakt, nowa typografia). Przerwana na prosbe Kamila: wersja z
+makiety jest tym, co spodobalo sie klientowi, wiec strona ma zostac przy
+oryginalnym ukladzie i dostawac tylko drobne poprawki, bez przebudowy od zera.
+Przywrocony stan z hero minimalistycznego (v3). Zadna zmiana z proby nie
+zostala w plikach.
+- Wersja plikow: ?v=20261018q
+
+2026-10-18  STRONA TYTULOWA PRZYWROCONA DO WERSJI Z MAKIETY
+Na prosbe Kamila hero wrocilo do oryginalnego ukladu z makiety: dwie kolumny,
+tekst po lewej, biala karta z monogramem JB i trzema kafelkami po prawej,
+szaro-niebieski gradient. Usuniete wersje: dokument z przekreslonymi sciemami
+i hero minimalistyczne (v3).
+- Zachowana jedna poprawka tresci: zamiast "100% konkretu" jest kafelek
+  "5 lat / jako trener sprzedazy".
+- Zachowany podpis dostepnosci karty ze zdjeciem (aria-label).
+- Wersja plikow: ?v=20261018r
+
+2026-10-18  PACZKA DO WGRANIA NA HOSTING
+- Folder SPOLKA STFS PROJEKTY\jan-borsa-do-wgrania zawiera tylko pliki
+  strony: index.html, polityka-prywatnosci.html, style.css, script.js,
+  og-image.png, robots.txt, sitemap.xml. Bez POPRAWKI.txt (dziennik jest
+  wewnetrzny, nie wgrywac go na serwer).
+- og-image.png: poprawiony napis z polskimi znakami ("ściemy").
+- Przed wgraniem: podmienic twojadomena.pl na prawdziwa domene w index.html
+  (canonical, og:image, JSON-LD), robots.txt i sitemap.xml oraz uzupelnic
+  zolte pola w polityce prywatnosci. Po kazdej zmianie plikow w jan-borsa
+  paczke trzeba odswiezyc.
+
+2026-10-18  MINI MENU W LEWYM DOLNYM ROGU
+- Staly przycisk (granatowa pigulka, ikona trzech kresek i nazwa biezacej
+  sekcji) w lewym dolnym rogu. Klik otwiera panel z lista 7 sekcji:
+  Start, Oferta, O mnie, Jak pracuje, Materialy, FAQ, Kontakt.
+- Biezaca sekcja jest podswietlana i wpisana na przycisku automatycznie
+  (IntersectionObserver, bez nasluchu scrolla). Panel zamyka klik poza nim,
+  klik w link i klawisz Escape.
+- Mobile: przycisk uniesiony nad dolnym paskiem Zadzwon/Napisz, ukrywany
+  przy otwartym menu-szufladzie. Reduced-motion: bez animacji.
+- Hero dostalo id="start" (cel linku "Start").
+- Pliki: index.html, style.css, script.js. Paczka do wgrania odswiezona.
+- Wersja plikow: ?v=20261018s
+
+2026-10-18  STOPKA
+- Usuniety dopisek "Ubezpieczenia bez sciemy" ze stopki. Zostaje
+  "© 2026 Jan Borsa" i link do polityki prywatnosci.
+- Wersja plikow: ?v=20261018t. Paczka do wgrania odswiezona.
+
+2026-10-18  NAWIGATOR: WZOR Z PASTA E TORO ZAMIAST PIGULKI
+Poprzednia pigulka z lista numerowana zastapiona widgetem pomocy w stylu
+klasycznym z Pasta e Toro (help-widget), w lewym dolnym rogu:
+- Okragly przycisk 60 px (granat, ikona dymka). Hover: powiekszenie i lekki
+  obrot, jak w pierwowzorze.
+- Po kliknieciu panel "Jak moge pomoc?" z krotkim opisem i linkami z ikonami:
+  Zobacz oferte, Obejrzyj materialy, Najczestsze pytania, Zadzwon,
+  Napisz e-mail.
+- Zamykanie: klik poza widgetem, klik w link, klawisz Escape.
+- Mobile: uniesiony nad dolnym paskiem Zadzwon/Napisz, ukrywany przy otwartym
+  menu-szufladzie. Reduced-motion: bez animacji.
+- Usuniety kod podswietlania sekcji (nie dotyczy tego widgetu). Hero zachowalo
+  id="start" (nieszkodliwe).
+- Wersja plikow: ?v=20261018u. Paczka do wgrania odswiezona.
+
+2026-10-18  NAWIGATOR PRZENIESIONY W PRAWY DOLNY ROG
+- Widget pomocy w prawym dolnym rogu (jak w Pasta e Toro): przycisk
+  right:20px, panel rozwija sie w lewo i w gore (transform-origin: bottom
+  right). Mobile: right:12px, nad dolnym paskiem Zadzwon/Napisz.
+- Wersja plikow: ?v=20261018w. Paczka do wgrania odswiezona.
+
+2026-10-18  FAQ: SCINKA PRZY ZAMYKANIU (PRZYCZYNA)
+- Prawdziwa przyczyna: odpowiedz ma padding-bottom 24 px, a box-sizing jest
+  border-box, wiec animacja wysokosci do 0 zatrzymywala sie na 24 px i na
+  koncu blok skakal o te 24 px. Teraz animowany jest tez padding-bottom
+  (24 px do 0 przy zamykaniu, 0 do 24 px przy otwieraniu), wiec ruch jest
+  ciagly i bez skoku.
+- Wersja plikow: ?v=20261018x. Paczka do wgrania odswiezona.
+
+2026-10-18  ZDJECIE W HERO
+- Zdjecie od Kamila wstawione w karte hero zamiast monogramu "JB":
+  images/jan-borsa-hero.jpg (880x1184, ok. 100 KB, JPEG progresywny).
+- Bez przycinania kompozycji: ramka ma te same proporcje co zdjecie
+  (aspect-ratio 880/1184, ok. 3:4), object-fit: cover tylko na wypadek
+  zaokraglen. Zdjecie jest widoczne w calosci, z glowa i garniturem.
+- Karta zwezona do 380 px na desktopie, zeby hero mieści się na ekranie
+  ok. 800 px; na telefonie karta na pelna szerokosc, zdjecie do 420 px.
+- Atrybuty: width/height (bez skoku ukladu), alt "Jan Borsa, doradca
+  ubezpieczeniowy", fetchpriority=high i decoding=async (zdjecie nad
+  zgieciem, nie lazy), draggable=false.
+- Paczka do wgrania: dodany folder images/ ze zdjeciem (wgrywac razem z
+  plikami strony, zachowac sciezke images/jan-borsa-hero.jpg).
+- Wersja plikow: ?v=20261018z
+
+2026-10-19  GORNY PASEK: BARDZIEJ WIDOCZNY, LINKEDIN I YOUTUBE
+- Naglowek: prawie pelna biel (97 procent), wyrazniejsza dolna linia i
+  delikatny cien, zeby odcinal sie od tla strony.
+- Linki menu wieksze i grubsze (15,5 px, waga 600), z granatowym
+  podkresleniem animowanym przy najechaniu. Dodany link FAQ (menu:
+  Oferta, O mnie, Materialy, FAQ, Kontakt).
+- Po prawej dwie okragle ikony 42 px: LinkedIn
+  (linkedin.com/in/jan-teodor-borsa-3abaa2ab) i YouTube (@borsapolisa),
+  oddzielone cienka kreska, otwieraja sie w nowej karcie, z aria-label.
+  Hover: granatowe wypelnienie.
+- Mobile: linki i ikony ukryte w naglowku (jest hamburger); w szufladzie
+  dodane dwa przyciski LinkedIn i YouTube nad przyciskiem Porozmawiajmy.
+- Wersja plikow: ?v=20261019a. Paczka do wgrania odswiezona.
+
+2026-10-19  KAFELKI LICZB W KARCIE HERO
+- Kafelki 15+, 5 lat, 1:1 przeprojektowane: delikatny gradient w
+  niebieskoszarej tonacji, cienka obwodka, biala wewnetrzna krawedz u gory,
+  wiekszy zaokraglony naroznik (14 px), krotka granatowa kreska akcentowa nad
+  liczba.
+- Liczba 26 px w kolorze granatu, podpis 12,5 px z ciasniejszym
+  interlinia (wczesniej luźny, rwany na dwie linie) i wyrownaniem
+  balansowanym; zabezpieczenie przed wyjsciem dlugiego slowa
+  ("indywidualne") poza kafelek.
+- Mobile: nieco mniejsze wypelnienie i liczba 23 px.
+- Wersja plikow: ?v=20261019b. Paczka do wgrania odswiezona.
+
+2026-10-19  SEKCJA "JAK PRACUJE": NOWE PODPISY POD KROKAMI
+Tytuly krokow bez zmian. Nowe opisy (stare byly zbyt ogolne):
+- 01 Rozmowa: "Opowiadasz o rodzinie, firmie i obawach. Ja słucham i dopytuję."
+- 02 Analiza: "Sprawdzam, co już masz i gdzie są luki w ochronie."
+- 03 Rekomendacja: "Pokazuję konkretne rozwiązania i uczciwie je porównuję."
+- 04 Decyzja: "Masz czas do namysłu. Wybierasz tylko to, co ma sens."
+- 05 Opieka: "Zostaję przy Tobie po podpisaniu: zmiany, pytania i pomoc przy
+  zgłoszeniu zdarzenia."
+Slownictwo pod ubezpieczenia na zycie (zdarzenie, nie szkoda). Do
+zatwierdzenia przez Janka. Wersja plikow: ?v=20261019c.
+
+2026-10-19  "JAK PRACUJE": TEKSTY KAMILA, 4 KROKI ZAMIAST 5
+Teksty podane przez Kamila (kroki 1, 3, 4 ze starej numeracji), krok 2
+(Analiza) usuniety. Numeracja ciagla 01 do 04, bez luk:
+- 01 Rozmowa: "Rozmawiamy o obszarach Twojego życia, które są najważniejsze
+  i wymagają zabezpieczenia."
+- 02 Rekomendacja: "Tworzę spersonalizowaną ofertę dopasowaną do Twoich
+  potrzeb."
+- 03 Decyzja: "Wybierasz wersję ubezpieczenia z przygotowanych przeze mnie
+  ofert, która najbardziej Ci odpowiada."
+- 04 Opieka: tekst bez zmian z poprzedniej wersji ("Zostaję przy Tobie po
+  podpisaniu: zmiany, pytania i pomoc przy zgłoszeniu zdarzenia.").
+- Siatka procesu: 4 kolumny zamiast 5 na desktopie (style.css .process).
+  Mobile bez zmian (1 kolumna).
+- Wersja plikow: ?v=20261019d. Paczka do wgrania odswiezona.
+
+2026-10-19  NUMERACJA KROKOW: BEZ "01 02 03 04"
+- Numery krokow w sekcji "Jak pracuje" zmienione z "01 02 03 04" na
+  zwykle cyfry 1, 2, 3, 4 w granatowych kolkach (38 px, biala cyfra).
+- Przy okazji usuniete wciecie tekstu wzgledem linii nad krokami (tekst
+  zaczyna sie teraz od lewej krawedzi linii).
+- Mobile: kroki jeden pod drugim, mniejszy gorny odstep.
+- Wersja plikow: ?v=20261019e. Paczka do wgrania odswiezona.
+
+2026-10-19  KONTAKT: USUNIETA KARTA "UMOW ROZMOWE"
+- Usunieta druga karta w sekcji Kontakt ("Umow rozmowe / Napisz lub
+  zadzwon. Ustalimy dogodny termin krotkiej rozmowy." z przyciskiem
+  "Napisz do mnie").
+- Zostala jedna karta z danymi Jana (telefon, e-mail, LinkedIn, YouTube),
+  siatka kontaktu na jedna kolumne, karta max 560 px.
+- Kontakt mailowy nadal dostepny w karcie, w widgecie pomocy ("Napisz
+  e-mail") i na dolnym pasku mobilnym ("Napisz").
+- Wersja plikow: ?v=20261019f. Paczka do wgrania odswiezona.
+
+2026-10-19  KONTAKT: KARTA NA CALA SZEROKOSC
+Pojedyncza karta "wisiala" po lewej stronie. Nowy uklad: jedna szeroka karta
+na cala szerokosc kontenera, trzy kolumny:
+- Jan Borsa i trzy obszary (lewa),
+- Telefon i e-mail jako duze granatowe linki z podpisami (srodek, oddzielone
+  cienka pionowa kreska),
+- przyciski LinkedIn i YouTube jeden pod drugim (prawa).
+Mobile (do 900 px): kolumny jedna pod drugą, przyciski LinkedIn i YouTube
+obok siebie. Dlugi e-mail zawija sie, nie wychodzi poza karte.
+Wersja plikow: ?v=20261019g. Paczka do wgrania odswiezona.
+
+2026-10-19  STOPKA: ODNOSNIK DO STFS.PL
+- W stopce dodany odnosnik "Strona wykonana przez stfs.pl" (https://stfs.pl,
+  nowa karta, rel=noopener), obok linku do polityki prywatnosci po prawej
+  stronie. Delikatnie przygaszony (80 procent), pelna widocznosc po
+  najechaniu. Mobile: linki jeden pod drugim.
+- Wersja plikow: ?v=20261019h. Paczka do wgrania odswiezona.
+
+2026-10-19  STOPKA: KREDYT STFS NA SRODKU I WIDOCZNY
+- Odnosnik "Strona wykonana przez stfs.pl" przeniesiony na srodek stopki i
+  zrobiony wyraznie widocznym: ciemny tekst (waga 600, 14 px), biala
+  pigulka z cienka obwodka, hover granatowy. Bez przygaszenia.
+- Uklad stopki: © 2026 Jan Borsa po lewej, kredyt STFS na srodku,
+  Polityka prywatnosci po prawej (siatka 1fr auto 1fr).
+- Mobile: trzy elementy wysrodkowane jeden pod drugim.
+- Wersja plikow: ?v=20261019j. Paczka do wgrania odswiezona.
+
+2026-10-19  MINIATURY FILMOW I OPTYMALIZACJA POD TELEFONY
+MINIATURY (zgoda Kamila na pobranie):
+- Pobrane raz z serwera miniatur YouTube (i.ytimg.com, maxresdefault 1280x720)
+  trzy kadry odcinkow: #15 (zycie), #13 (firmy), #17 (zdrowie). Zapisane
+  lokalnie w images/ jako film-zycie / film-firmy / film-zdrowie w wersjach
+  WebP 640 i 960 px oraz JPG 640 (fallback). Strona NIE laczy sie z Google,
+  dopoki ktos nie kliknie film. Polityka prywatnosci bez zmian.
+- Kadr 16:9 pokazany w calosci (ramka ma proporcje obrazu), ikona play w
+  lewym dolnym rogu miniatury (nie zaslania twarzy). Filmy sa pionowe, wiec
+  po bokach jest rozmyte tlo z oryginalnej miniatury.
+- Obrazy leniwie (loading=lazy), z width/height (bez skoku ukladu).
+OPTYMALIZACJA:
+- Zdjecie hero: <picture> z WebP 440 / 660 / 880 px (srcset + sizes) i JPG
+  440 jako zapasowy; wczesniej jeden JPG 880 (ok. 75 KB), teraz telefon
+  pobiera ok. 16 do 42 KB zaleznie od gestosci ekranu. Preload zdjecia w
+  <head> i fetchpriority=high.
+- Skrypt z atrybutem defer (nie blokuje renderowania).
+- Telefony (hover:none): naglowek bez rozmycia tla (backdrop-filter jest
+  drogi przy przewijaniu), lzejsze cienie, touch-action: manipulation i
+  wylaczone podswietlenie dotyku (brak opoznienia 300 ms).
+- Dodany plik .htaccess (Apache): kompresja gzip/deflate, cache 1 rok dla
+  obrazow, CSS i JS (bezpieczne, bo CSS i JS maja ?v=), HTML 10 minut,
+  naglowki bezpieczenstwa. Na serwerze innym niz Apache jest ignorowany.
+- Calkowita waga pierwszego wejscia na telefonie (HTML 15 KB + CSS 17 KB +
+  JS 5 KB + zdjecie 16 do 42 KB) to ok. 55 do 80 KB przed kompresja serwera.
+  Miniatury (ok. 9 do 28 KB sztuka) dociagaja sie dopiero przy przewijaniu.
+- Wersja plikow: ?v=20261019m. Paczka do wgrania przebudowana: tylko
+  uzywane obrazy, razem z .htaccess. Plik images/jan-borsa-hero.jpg (oryginal)
+  zostaje w projekcie, ale nie jest wgrywany.
+
+2026-10-19  MINIATURY FILMOW: BEZ ROZMYTEGO "JANKA W TLE"
+- Oryginalne miniatury YouTube sa 16:9, ale filmy sa pionowe, wiec po bokach
+  YouTube dokleja powiekszone, rozmyte tlo z twarza (wygladalo jak drugi
+  Janek w tle). Pobrane ponownie ten sam kadr i wycieta tylko ostra pionowa
+  czesc 9:16 (405x720 px, bez rozmytych bokow), zapisana jako WebP 360x640
+  (ok. 10 KB) z JPG zapasowym. Nic z wlasciwego obrazu nie jest uciete.
+- Karta: ramka 4:3 z granatowym gradientem, pionowy kadr wysrodkowany w
+  calosci (object-fit: contain), ikona play w lewym dolnym rogu.
+- Usuniete stare pliki film-*-640 i film-*-960. Wersja plikow: ?v=20261019n.
+  Paczka do wgrania odswiezona.
+
+2026-10-19  ANIMACJE PRZYCISKOW
+Przyciski (.btn): hero, kanal YouTube, szuflada, kontakt, pasek mobilny.
+- Najechanie (mysz): ciemniejsze granatowe wypelnienie wsuwa sie z lewej
+  (0,5 s, miekka krzywa), przycisk unosi sie o 3 px i dostaje cien.
+  Przycisk jasny wypelnia sie granatem, tekst plynnie zmienia kolor na
+  bialy, obwodka na granat.
+- Klikniecie: lekkie wcisniecie (skala 0,97), wyrazny pierscien fokusa dla
+  klawiatury.
+- Telefony (bez myszy): brak "przyklejonego" hovera; po dotknieciu
+  wypelnienie i wcisniecie dzialaja na :active, wiec reakcja jest od razu.
+- Reszta klikalnych elementow: ikony LinkedIn i YouTube w naglowku (unosza
+  sie i dostaja cien), przyciski szuflady (wypelnienie przy dotyku), widget
+  pomocy (wcisniecie, linki przesuwaja sie o 6 px), pytania FAQ (kolor
+  akcentu), burger i krzyzyk (wcisniecie), kredyt STFS (wcisniecie).
+- Reduced-motion: bez przejsc i bez unoszenia.
+- Tylko transform, opacity i kolory (bez animacji wymiarow), wiec plynnie
+  na telefonie. Wersja plikow: ?v=20261019o. Paczka do wgrania odswiezona.
+
+2026-10-19  PRZYCISKI: POWIEKSZANIE ZAMIAST WYPELNIANIA
+Na prosbe Kamila usuniete wypelnianie przycisku kolorem (wsuwajacy sie
+pasek). Zostalo powiekszanie:
+- Najechanie (mysz): przycisk powieksza sie do 106 procent, dostaje cien,
+  glowny przycisk lekko ciemnieje. Jasny przycisk dostaje granatowa
+  obwodke, bez zmiany tla i tekstu.
+- Klikniecie: wcisniecie do 102 procent. Telefony (bez myszy): po dotknieciu
+  skurczenie do 96 procent, bez przyklejonego hovera.
+- Reszta (ikony naglowka, widget pomocy, FAQ, burger, szuflada, kredyt STFS)
+  bez zmian. Reduced-motion: bez przejsc.
+- Wersja plikow: ?v=20261019p. Paczka do wgrania odswiezona.
