@@ -448,3 +448,28 @@ Dzialanie:
 - Reduced-motion: bez skalowania i przejsc, przewijanie natychmiastowe.
 - Zasada zapisana w pamieci projektu (feedback_mobile_sliders).
 - Wersja plikow: ?v=20261019r. Paczka do wgrania odswiezona.
+
+2026-10-19  SLIDERY: NAPRAWA (PRZEWIJANIE, PRZYCISKI) I PETLA
+Zgloszone przez Kamila: na sliderach nie dzialaly przyciski, nie dalo sie
+przewijac i nie bylo petli.
+- Przyczyna: skala (transform) dzialala na samym elemencie zatrzaskujacym
+  scroll-snap. Przy zmianie rozmiaru przegladarka przelicza punkty zatrzasku
+  i wciagala pasek z powrotem, wiec swipe i strzalki sie "gryzly".
+  Teraz kazdy element siedzi w slajdzie (.slide), ktory ma tylko
+  scroll-snap-align i nie ma zadnej transformacji, a skala i przygaszenie
+  sa na elemencie wewnatrz slajdu. Dodane scroll-snap-stop: always (jeden
+  element na gest).
+- Petla: przed i po oryginalach sa klony (aria-hidden, bez fokusu). Po
+  zatrzymaniu przewijania (event scrollend lub 140 ms ciszy) pasek
+  niewidocznie przeskakuje z klonow do oryginalow. Dziala przy
+  przesuwaniu palcem, strzalkach i kropkach (kropka wybiera najkrotsza
+  droge).
+- Slider budowany tylko do 800 px. Po zmianie szerokosci (obrot, okno)
+  klony znikaja, elementy wracaja do siatek, przy powrocie slider buduje
+  sie od nowa.
+- Sprawdzone w podgladzie: struktura (np. 6 kart + 12 klonow), start na
+  pierwszym oryginale, przejscia z ostatniego na pierwszy i odwrotnie,
+  kropki, brak transformacji na elemencie zatrzaskujacym, powrot siatek na
+  desktopie, brak bledow w konsoli. NIE sprawdzone: przesuwanie palcem na
+  prawdziwym telefonie.
+- Wersja plikow: ?v=20261019s. Paczka do wgrania odswiezona.

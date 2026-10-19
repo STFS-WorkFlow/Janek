@@ -68,10 +68,14 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setHelp(false); });
   }
 
-  // Slidery na telefonie: grupy kart, krokow i kafli jako poziomy pasek (scroll-snap, strzalki, kropki)
+  // Slidery na telefonie (do 800 px): petla (klony), scroll-snap, strzalki, kropki.
+  // Animacja (skala, przezroczystosc) jest na ELEMENCIE WEWNATRZ slajdu, a nie na slajdzie,
+  // bo transform na elemencie z scroll-snap zmienia punkty zatrzasku i pasek "wraca" (nie dalo sie przesuwac).
+  var mqSlider = window.matchMedia('(max-width:800px)');
   document.querySelectorAll('.cards, .process, .media').forEach(function (track) {
     var items = Array.prototype.slice.call(track.children);
-    if (items.length < 2) return;
+    var n = items.length;
+    if (n < 2) return;
     var wrap = document.createElement('div');
     wrap.className = 'slider';
     track.parentNode.insertBefore(wrap, track);
@@ -82,38 +86,110 @@
     ui.innerHTML = '<button type="button" class="s-btn prev" aria-label="Poprzedni">&#8249;</button><div class="s-dots"></div><button type="button" class="s-btn next" aria-label="Następny">&#8250;</button>';
     wrap.appendChild(ui);
     var dotsEl = ui.querySelector('.s-dots');
-    var current = 0;
     var dots = items.map(function (_, i) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 's-dot';
-      b.setAttribute('aria-label', 'Element ' + (i + 1) + ' z ' + items.length);
-      b.addEventListener('click', function () { go(i); });
-      dotsEl.appendChild(b);
-      return b;
+      var d = document.createElement('button');
+      d.type = 'button';
+      d.className = 's-dot';
+      d.setAttribute('aria-label', 'Element ' + (i + 1) + ' z ' + n);
+      d.addEventListener('click', function () {
+        var delta = (((i - (cur % n)) % n) + n) % n;
+        if (delta > n / 2) delta -= n;
+        go(target + delta, true);
+      });
+      dotsEl.appendChild(d);
+      return d;
     });
-    function stepWidth() { return items[1].offsetLeft - items[0].offsetLeft; }
-    function go(i) {
-      var left = items[i].offsetLeft - items[0].offsetLeft;
-      track.scrollTo({ left: left, behavior: calm ? 'auto' : 'smooth' });
+    var built = false, slides = [], orig = [], cur = 0, target = 0, padL = 0, tick = 0, settle = 0;
+
+    function leftOf(g) { return slides[g].offsetLeft - padL; }
+    function nearest() {
+      var s = track.scrollLeft, best = 0, bd = 1e9;
+      for (var k = 0; k < slides.length; k++) {
+        var d = Math.abs(leftOf(k) - s);
+        if (d < bd) { bd = d; best = k; }
+      }
+      return best;
     }
-    function setActive(i) {
-      current = i;
-      items.forEach(function (el, k) { el.classList.toggle('is-active', k === i); });
+    function setActive(g) {
+      cur = g;
+      var i = ((g % n) + n) % n;
+      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === g); });
       dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
     }
-    function calc() {
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) return items.length - 1;
-      return Math.max(0, Math.min(items.length - 1, Math.round(track.scrollLeft / stepWidth())));
+    function go(g, smooth) {
+      target = g;
+      track.scrollTo({ left: leftOf(g), behavior: (smooth && !calm) ? 'smooth' : 'instant' });
     }
-    var tick = 0;
-    track.addEventListener('scroll', function () {
+    // po zatrzymaniu przewijania: jesli jestesmy w zestawie klonow, przeskocz (niewidocznie) do oryginalow
+    function normalize() {
+      if (!built) return;
+      var g = nearest();
+      if (g < n || g >= 2 * n) {
+        var gg = g < n ? g + n : g - n;
+        var shift = leftOf(gg) - leftOf(g);
+        track.scrollTo({ left: track.scrollLeft + shift, behavior: 'instant' });
+        g = gg;
+      }
+      target = g;
+      setActive(g);
+    }
+    function onScroll() {
+      if (!built) return;
+      clearTimeout(settle);
+      settle = setTimeout(normalize, 140);
       if (tick) return;
-      tick = setTimeout(function () { tick = 0; setActive(calc()); }, 40);
-    }, { passive: true });
-    ui.querySelector('.prev').addEventListener('click', function () { go(current === 0 ? items.length - 1 : current - 1); });
-    ui.querySelector('.next').addEventListener('click', function () { go(current === items.length - 1 ? 0 : current + 1); });
-    setActive(0);
+      tick = setTimeout(function () { tick = 0; if (built) setActive(nearest()); }, 40);
+    }
+    function cloneSlide(s) {
+      var c = s.cloneNode(true);
+      c.classList.add('is-clone');
+      c.classList.remove('is-active');
+      c.setAttribute('aria-hidden', 'true');
+      Array.prototype.forEach.call(c.querySelectorAll('a, button'), function (el) { el.setAttribute('tabindex', '-1'); });
+      return c;
+    }
+    function build() {
+      orig = items.map(function (it) {
+        var s = document.createElement('div');
+        s.className = 'slide';
+        track.insertBefore(s, it);
+        s.appendChild(it);
+        return s;
+      });
+      var before = orig.map(cloneSlide), after = orig.map(cloneSlide);
+      before.forEach(function (c) { track.insertBefore(c, orig[0]); });
+      after.forEach(function (c) { track.appendChild(c); });
+      slides = before.concat(orig, after);
+      built = true;
+      padL = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      go(n, false);
+      setActive(n);
+    }
+    function destroy() {
+      built = false;
+      slides.forEach(function (s) { if (s.classList.contains('is-clone')) s.remove(); });
+      orig.forEach(function (s, i) { track.insertBefore(items[i], s); s.remove(); });
+      slides = []; orig = [];
+      track.scrollLeft = 0;
+    }
+    function sync() {
+      if (mqSlider.matches) { if (!built) build(); } else if (built) { destroy(); }
+    }
+    track.addEventListener('scroll', onScroll, { passive: true });
+    track.addEventListener('scrollend', normalize);
+    ui.querySelector('.prev').addEventListener('click', function () { if (built) go(target - 1, true); });
+    ui.querySelector('.next').addEventListener('click', function () { if (built) go(target + 1, true); });
+    if (mqSlider.addEventListener) { mqSlider.addEventListener('change', sync); } else if (mqSlider.addListener) { mqSlider.addListener(sync); }
+    var rz = 0;
+    window.addEventListener('resize', function () {
+      clearTimeout(rz);
+      rz = setTimeout(function () {
+        if (!built) return;
+        padL = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+        go(cur, false);
+      }, 150);
+    });
+    sync();
   });
 
   var burger = document.getElementById('burger');
