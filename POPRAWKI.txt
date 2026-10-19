@@ -414,3 +414,11 @@ pasek). Zostalo powiekszanie:
 - Reszta (ikony naglowka, widget pomocy, FAQ, burger, szuflada, kredyt STFS)
   bez zmian. Reduced-motion: bez przejsc.
 - Wersja plikow: ?v=20261019p. Paczka do wgrania odswiezona.
+
+2026-10-19  REPOZYTORIUM GITHUB
+- Projekt wrzucony do repozytorium STFS-WorkFlow/Janek (galaz main):
+  https://github.com/STFS-WorkFlow/Janek
+  W repo jest caly folder jan-borsa (pliki strony, images/, .htaccess i ten
+  dziennik). Zrodlo prawdy to folder jan-borsa, paczka do wgrania na hosting
+  to jan-borsa-do-wgrania (bez dziennika i oryginalu zdjecia).
+- Kolejne zmiany: commit i push do tego repo po kazdej wiekszej serii zmian.
