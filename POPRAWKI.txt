@@ -510,3 +510,23 @@ i nie pokazuja konsoli bledow. Dzialania:
   dziennik dotkniec i klikniec (np. "klik: BUTTON.s-btn next"). Sluzy do
   wysledzenia, co nie dziala w Messengerze. Bez ?debug=1 niewidoczny.
 - Wersja plikow: ?v=20261019v. Paczka do wgrania odswiezona.
+
+2026-10-19  SLIDERY: ODPORNOSC NA PRZEGLADARKI WBUDOWANE (AWARYJNY TRYB)
+Kamil nie mogl teraz sprawdzic w Messengerze, wiec utwardzenie bez
+diagnozy na urzadzeniu:
+- Awaryjny tryb natywny: jesli budowa petli (klony) sie nie powiedzie z
+  dowolnego powodu, skrypt sprzata klony i opakowania, a slider zostaje
+  zwyklym poziomym paskiem ze scroll-snap (swipe dziala natywnie), a
+  strzalki przewijaja o jeden element (84 procent szerokosci paska).
+  CSS dziala tez bez opakowan .slide (.slider-track>*).
+- Kazdy blok skryptu (animacje reveal, FAQ, widget pomocy, slidery,
+  menu) w osobnym try/catch: blad jednego nie zatrzymuje reszty strony.
+- Sprawdzone w podgladzie: normalna sciezka (petla, strzalki, animacja,
+  powrot scroll-snap) oraz wymuszona awaria klonowania: slider zostal
+  natywnym paskiem, strzalka przesunela o jeden element, blad zapisany w
+  ramce ?debug=1. Pliki testowe usuniete.
+- Podejrzenie dla Messengera: przegladarka wbudowana zwykle trzyma w
+  pamieci starsza wersje strony (HTML na GitHub Pages ma cache 10 minut),
+  wiec moze pokazywac stare, zepsute wersje sliderow. Do testu otwierac
+  link z dopiskiem ?x=numer lub ?debug=1, albo "Otworz w przegladarce".
+- Wersja plikow: ?v=20261019w. Paczka do wgrania odswiezona.

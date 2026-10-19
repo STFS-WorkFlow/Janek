@@ -23,6 +23,7 @@
   }
   var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   var calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  try {
   if (fine && !calm && !window.matchMedia('(max-width:800px)').matches && 'IntersectionObserver' in window) {
     var items = document.querySelectorAll('.card, .step, .section-head, .quote, .contact-box, .faq details');
     document.documentElement.classList.add('js-reveal');
@@ -33,7 +34,9 @@
     }, { threshold: 0.12 });
     items.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
+  } catch (e0) { if (window.__dlog) __dlog('BLAD (reveal): ' + e0.message); }
 
+  try {
   document.querySelectorAll('.faq details').forEach(function (d) {
     var sum = d.querySelector('summary');
     var body = d.querySelector('p');
@@ -75,6 +78,7 @@
       setTimeout(done, 330);
     });
   });
+  } catch (e1) { if (window.__dlog) __dlog('BLAD (faq): ' + e1.message); }
 
   // Widget pomocy w prawym dolnym rogu (wzor z Pasta e Toro): panel z szybkimi linkami
   var helpToggle = document.getElementById('helpToggle');
@@ -225,8 +229,9 @@
     }
     track.addEventListener('scroll', onScroll, { passive: true });
     track.addEventListener('scrollend', normalize);
-    ui.querySelector('.prev').addEventListener('click', function () { if (built) go(target - 1, true); });
-    ui.querySelector('.next').addEventListener('click', function () { if (built) go(target + 1, true); });
+    // gdyby budowa petli sie nie udala: strzalki dalej przewijaja zwykly, natywny pasek
+    ui.querySelector('.prev').addEventListener('click', function () { if (built) { go(target - 1, true); } else { track.scrollLeft -= track.clientWidth * 0.84; } });
+    ui.querySelector('.next').addEventListener('click', function () { if (built) { go(target + 1, true); } else { track.scrollLeft += track.clientWidth * 0.84; } });
     if (mqSlider.addEventListener) { mqSlider.addEventListener('change', sync); } else if (mqSlider.addListener) { mqSlider.addListener(sync); }
     var rz = 0;
     window.addEventListener('resize', function () {
@@ -242,6 +247,12 @@
    } catch (err) {
     if (window.__dlog) { __dlog('BLAD slidera: ' + err.message); }
     if (window.console && console.error) { console.error(err); }
+    // awaria budowy petli: wyczysc klony i opakowania, zostaw dzialajacy natywny pasek (swipe)
+    built = false;
+    Array.prototype.slice.call(track.children).forEach(function (c) {
+      if (c.classList.contains('is-clone')) { track.removeChild(c); }
+      else if (c.classList.contains('slide')) { while (c.firstChild) { track.insertBefore(c.firstChild, c); } track.removeChild(c); }
+    });
    }
   });
 

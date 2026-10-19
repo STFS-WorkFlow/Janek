@@ -295,12 +295,14 @@ a,button,summary{touch-action:manipulation}
   .slider-track{display:flex !important;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none;padding:6px 4vw 10px;margin:0 -4vw;scroll-padding-inline:4vw;position:relative}
   .slider-track::-webkit-scrollbar{display:none}
   /* slajd = element zatrzaskujacy (bez transformacji) */
-  .slider-track>.slide{flex:0 0 84%;min-width:0;display:flex;scroll-snap-align:start;scroll-snap-stop:always}
+  /* dziala tez bez opakowan .slide (awaryjny, natywny pasek) */
+  .slider-track>*{flex:0 0 84%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always}
+  .slider-track>.slide{display:flex}
   /* animacja jest na elemencie wewnatrz slajdu */
   .slide>*{flex:1 1 auto;min-width:0;transform:scale(.95);opacity:.72;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .45s ease}
   .slide.is-active>*{transform:none;opacity:1}
   .slider-track img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
-  .slider-track.process>.slide{flex-basis:78%}
+  .slider-track.process>*{flex-basis:78%}
   .slider-track.process .step{padding:22px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}
   .slider-track.process .step h3{margin:14px 0 6px}
   .slider-ui{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px}
