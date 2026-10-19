@@ -422,3 +422,29 @@ pasek). Zostalo powiekszanie:
   dziennik). Zrodlo prawdy to folder jan-borsa, paczka do wgrania na hosting
   to jan-borsa-do-wgrania (bez dziennika i oryginalu zdjecia).
 - Kolejne zmiany: commit i push do tego repo po kazdej wiekszej serii zmian.
+
+2026-10-19  MOBILE: SLIDERY ZAMIAST DLUGICH LIST W DOL
+Zasada Kamila: na telefonie nie robimy dlugich elementow w dol, tylko
+slidery lewo/prawo z animacja. Zastosowane (do 800 px szerokosci) dla:
+- 6 kart oferty ("Nie zaczynam od produktu..."),
+- 4 krokow "Jak pracuje" (kroki dostaly wyglad kart),
+- 3 kafli z filmami YouTube.
+FAQ (akordeon), kontakt i hero zostaja pionowo (krotkie lub zwijane).
+Dzialanie:
+- Poziomy pasek ze scroll-snap (mandatory), kolejny element lekko widoczny
+  z prawej (84 procent szerokosci karty), pelna szerokosc ekranu.
+- Animacja: aktywny element pelny, sasiednie mniejsze (95 procent) i
+  przygaszone (72 procent), plynne przejscie 0,45 s; przewijanie strzalkami
+  i kropkami jest plynne (smooth).
+- Pod sliderem: strzalka poprzedni, kropki (aktywna wydluza sie do
+  pigulki), strzalka nastepny. Strzalki zawijaja (z ostatniego na
+  pierwszy i odwrotnie). Przyciski 46 px, strzalki nigdy nie sa ukryte.
+- Zasady z checklisty mobilnej: overscroll-behavior-x: contain, brak
+  przeciagania obrazkow (user-drag/user-select/touch-callout), pasek
+  przewijania ukryty, listener scrolla na samym pasku (pasywny, z
+  ograniczeniem czestotliwosci), nie na oknie.
+- Powyzej 800 px bez zmian (siatki jak wczesniej, przyciski slidera
+  ukryte). Reveal na scroll wylaczony na szerokosci telefonu.
+- Reduced-motion: bez skalowania i przejsc, przewijanie natychmiastowe.
+- Zasada zapisana w pamieci projektu (feedback_mobile_sliders).
+- Wersja plikow: ?v=20261019r. Paczka do wgrania odswiezona.

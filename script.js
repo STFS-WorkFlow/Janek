@@ -1,7 +1,7 @@
 (function () {
   var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
   var calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if (fine && !calm && 'IntersectionObserver' in window) {
+  if (fine && !calm && !window.matchMedia('(max-width:800px)').matches && 'IntersectionObserver' in window) {
     var items = document.querySelectorAll('.card, .step, .section-head, .quote, .contact-box, .faq details');
     document.documentElement.classList.add('js-reveal');
     var io = new IntersectionObserver(function (entries) {
@@ -67,6 +67,54 @@
     document.addEventListener('click', function (e) { if (!e.target.closest('#helpWidget')) setHelp(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setHelp(false); });
   }
+
+  // Slidery na telefonie: grupy kart, krokow i kafli jako poziomy pasek (scroll-snap, strzalki, kropki)
+  document.querySelectorAll('.cards, .process, .media').forEach(function (track) {
+    var items = Array.prototype.slice.call(track.children);
+    if (items.length < 2) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'slider';
+    track.parentNode.insertBefore(wrap, track);
+    wrap.appendChild(track);
+    track.classList.add('slider-track');
+    var ui = document.createElement('div');
+    ui.className = 'slider-ui';
+    ui.innerHTML = '<button type="button" class="s-btn prev" aria-label="Poprzedni">&#8249;</button><div class="s-dots"></div><button type="button" class="s-btn next" aria-label="Następny">&#8250;</button>';
+    wrap.appendChild(ui);
+    var dotsEl = ui.querySelector('.s-dots');
+    var current = 0;
+    var dots = items.map(function (_, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 's-dot';
+      b.setAttribute('aria-label', 'Element ' + (i + 1) + ' z ' + items.length);
+      b.addEventListener('click', function () { go(i); });
+      dotsEl.appendChild(b);
+      return b;
+    });
+    function stepWidth() { return items[1].offsetLeft - items[0].offsetLeft; }
+    function go(i) {
+      var left = items[i].offsetLeft - items[0].offsetLeft;
+      track.scrollTo({ left: left, behavior: calm ? 'auto' : 'smooth' });
+    }
+    function setActive(i) {
+      current = i;
+      items.forEach(function (el, k) { el.classList.toggle('is-active', k === i); });
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+    }
+    function calc() {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) return items.length - 1;
+      return Math.max(0, Math.min(items.length - 1, Math.round(track.scrollLeft / stepWidth())));
+    }
+    var tick = 0;
+    track.addEventListener('scroll', function () {
+      if (tick) return;
+      tick = setTimeout(function () { tick = 0; setActive(calc()); }, 40);
+    }, { passive: true });
+    ui.querySelector('.prev').addEventListener('click', function () { go(current === 0 ? items.length - 1 : current - 1); });
+    ui.querySelector('.next').addEventListener('click', function () { go(current === items.length - 1 ? 0 : current + 1); });
+    setActive(0);
+  });
 
   var burger = document.getElementById('burger');
   var drawer = document.getElementById('drawer');

@@ -288,3 +288,30 @@ a,button,summary{touch-action:manipulation}
   .btn,.nav-social a,.help-panel a,.drawer-social a{transition:none}
   .btn:hover,.btn:active{transform:none}
 }
+/* ===== slidery (telefon): zamiast dlugich list w dol ===== */
+.slider-ui{display:none}
+@media(max-width:800px){
+  .slider{position:relative}
+  .slider-track{display:flex !important;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none;padding:6px 4vw 10px;margin:0 -4vw;scroll-padding-inline:4vw;position:relative}
+  .slider-track::-webkit-scrollbar{display:none}
+  .slider-track>*{flex:0 0 84%;min-width:0;scroll-snap-align:start;transform:scale(.95);opacity:.72;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .45s ease}
+  .slider-track>.is-active{transform:none;opacity:1}
+  .slider-track img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
+  .slider-track.process>*{flex-basis:78%}
+  .slider-track.process .step{padding:22px 20px;border:1px solid var(--line);border-radius:16px;background:#fff}
+  .slider-track.process .step h3{margin:14px 0 6px}
+  .slider-ui{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px}
+  .s-btn{width:46px;height:46px;border-radius:50%;border:1px solid #c9d2de;background:#fff;color:var(--accent);font-size:26px;line-height:1;padding:0 0 3px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease,background .2s ease}
+  .s-btn:active{transform:scale(.9);background:#e9eef4}
+  .s-dots{display:flex;align-items:center;gap:8px}
+  .s-dot{position:relative;width:8px;height:8px;border:0;border-radius:99px;padding:0;background:#c3ccd8;cursor:pointer;transition:width .35s cubic-bezier(.16,1,.3,1),background .25s ease}
+  .s-dot::after{content:"";position:absolute;inset:-12px -4px}
+  .s-dot.on{width:26px;background:var(--accent)}
+  .dark .s-btn{background:transparent;border-color:#3a4c63;color:#fff}
+  .dark .s-btn:active{background:#243a55}
+  .dark .s-dot{background:#3a4c63}
+  .dark .s-dot.on{background:#fff}
+}
+@media(prefers-reduced-motion:reduce){
+  .slider-track>*{transition:none;transform:none;opacity:1}
+}
