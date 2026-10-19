@@ -37,11 +37,12 @@ a:focus-visible,button:focus-visible{outline:3px solid #6f9bd1;outline-offset:3p
 .drawer.open{transform:translateX(0);visibility:visible;transition:transform .3s ease}
 .drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .drawer-close{width:46px;height:46px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:26px;line-height:1;cursor:pointer;color:var(--ink)}
-.drawer ol{list-style:none;margin:0;padding:0;counter-reset:n}
+.drawer ol{list-style:none;margin:0;padding:0;}
 .drawer li{border-top:1px solid var(--line)}
 .drawer li:last-child{border-bottom:1px solid var(--line)}
-.drawer li a{display:flex;align-items:baseline;gap:14px;padding:18px 4px;color:var(--ink);text-decoration:none;font-size:22px;font-weight:700;letter-spacing:-.5px}
-.drawer li a::before{counter-increment:n;content:"0" counter(n);font-size:12px;font-weight:800;color:var(--accent);letter-spacing:1px}
+.drawer li a{display:flex;align-items:center;gap:14px;padding:18px 4px;color:var(--ink);text-decoration:none;font-size:22px;font-weight:700;letter-spacing:-.5px}
+.drawer li a::after{content:"\203A";margin-left:auto;font-size:28px;font-weight:400;line-height:1;color:var(--accent);transition:transform .25s ease}
+.drawer li a:active::after{transform:translateX(4px)}
 .drawer .btn{margin-top:auto;text-align:center}
 .backdrop{position:fixed;inset:0;background:rgba(17,24,39,.5);z-index:110;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s}
 .backdrop.open{opacity:1;visibility:visible;transition:opacity .3s ease}

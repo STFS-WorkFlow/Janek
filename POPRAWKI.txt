@@ -565,3 +565,14 @@ Zgloszenie Kamila: animacja byla za szybka, migala i byla niewidoczna.
   widocznosc; aktywny element wskazuja kropki.
 - Pętla bez zmian (z ostatniego w prawo plynnie na pierwszy), sprawdzona.
 - Wersja plikow: ?v=20261019y. Paczka do wgrania odswiezona.
+
+2026-10-19  MENU MOBILNE: BEZ NUMERACJI
+Zgloszenie Kamila (zrzut z iPhone'a): numeracja 01 do 06 przy pozycjach
+szuflady menu byla niepotrzebna i nie odpowiadala niczemu.
+- Usuniete numery (pseudo-element ::before z licznikiem).
+- Zamiast nich po prawej delikatna granatowa strzalka ›, ktora przesuwa sie
+  o 4 px przy dotyku. Pozycje: Oferta, O mnie, Jak pracuje, Materialy,
+  FAQ, Kontakt. Reszta szuflady bez zmian (LinkedIn, YouTube,
+  Porozmawiajmy).
+- Zasada zapisana w pamieci: bez ozdobnej numeracji 01 02 i ukosnikow.
+- Wersja plikow: ?v=20261019z. Paczka do wgrania odswiezona.
