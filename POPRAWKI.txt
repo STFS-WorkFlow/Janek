@@ -473,3 +473,19 @@ przewijac i nie bylo petli.
   desktopie, brak bledow w konsoli. NIE sprawdzone: przesuwanie palcem na
   prawdziwym telefonie.
 - Wersja plikow: ?v=20261019s. Paczka do wgrania odswiezona.
+
+2026-10-19  SLIDERY: PRZYCISKI DALEJ NIE DZIALALY (PRAWDZIWA PRZYCZYNA)
+Wszystko dzialalo w skryptach testowych, ale nie przy prawdziwym dotyku.
+- Przyczyna: kontener widgetu pomocy (.help-widget, prawy dolny rog) zawiera
+  panel, ktory po zamknieciu jest niewidoczny, ale NADAL zajmuje miejsce
+  (ok. 300 x 330 px). Kontener przechwytywal dotkniecia, wiec strzalki i
+  kropki sliderow (i wszystko inne w tym obszarze) nie dostawaly klikniec.
+  Potwierdzone na zywej stronie: elementFromPoint w srodku przycisku
+  zwracal DIV.help-widget.
+- Naprawa: .help-widget ma pointer-events:none, a przycisk widgetu i
+  otwarty panel pointer-events:auto.
+- Sprawdzone: elementFromPoint trafia w kazda strzalke i kropke trzech
+  sliderow oraz w przycisk widgetu; prawdziwe klikniecie myszy w strzalke
+  przesunelo slider o jeden element; otwarty panel nadal klikalny.
+- Dotyczylo tez desktopu (zablokowany obszar w prawym dolnym rogu).
+- Wersja plikow: ?v=20261019t. Paczka do wgrania odswiezona.

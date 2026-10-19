@@ -318,3 +318,6 @@ a,button,summary{touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
   .slide>*{transition:none;transform:none;opacity:1}
 }
+/* widget pomocy: kontener nie moze blokowac klikniec pod soba (zamkniety panel zajmuje miejsce, ale jest niewidoczny) */
+.help-widget{pointer-events:none}
+.help-widget .help-toggle,.help-widget .help-panel.open{pointer-events:auto}
