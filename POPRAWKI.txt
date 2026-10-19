@@ -609,3 +609,27 @@ numeracje 01 do 06 w kolkach.
   pracuje" (zaakceptowane) oraz oznaczenia odcinkow YouTube (#15, #13,
   #17) w opisach.
 - Wersja plikow: ?v=20261019zd. Paczka do wgrania odswiezona.
+
+2026-10-19  SEO: ZNACZNIKI, IKONA, 404, FAQ SCHEMA, NAGLOWKI WIDGETU
+Zakres wskazany przez Kamila (z listy "mozna od reki"):
+- og:site_name = "Jan Borsa" oraz og:url = https://twojadomena.pl/ (ten sam
+  adres zastepczy co canonical; do podmiany na prawdziwa domene razem z
+  pozostalymi miejscami).
+- apple-touch-icon: images/apple-touch-icon.png (180x180, nieprzezroczyste
+  granatowe tlo z bialym "JB"), podpiety w <head>. Uzywany przy dodaniu
+  strony do ekranu poczatkowego iPhone'a i w podgladach.
+- 404.html: strona bledu w stylu strony (duze 404, krotki komunikat,
+  przycisk "Wroc na strone glowna"), noindex, samodzielna (wlasny CSS).
+  Link do strony glownej: na domenie "/", na adresie GitHub Pages
+  (xxx.github.io/Projekt/) pierwszy segment sciezki. GitHub Pages
+  serwuje ja automatycznie dla nieistniejacych adresow.
+- Dane strukturalne FAQPage (schema.org): 6 pytan i odpowiedzi
+  wygenerowane z widocznej tresci i sprawdzone co do znaku z tym, co
+  widzi uzytkownik (wymog Google). Obok istniejacego Person.
+- Widget pomocy: naglowek h4 "Jak moge pomoc?" zamieniony na akapit
+  .help-title (wyglad bez zmian), zeby nie psuc hierarchii naglowkow
+  (h1, h2, h3). Na stronie nie ma teraz zadnego h4.
+- Do podmiany po otrzymaniu domeny: twojadomena.pl w index.html (canonical,
+  og:image, og:url, JSON-LD Person), robots.txt, sitemap.xml.
+- Wersja plikow: ?v=20261019ze. Paczka do wgrania odswiezona (doszly
+  404.html i apple-touch-icon.png).
