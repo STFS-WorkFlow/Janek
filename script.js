@@ -167,8 +167,8 @@
       inners.forEach(function (el) { el.style.transition = 'none'; el.style.transform = 'translate3d(' + dist + 'px,0,0)'; });
       void track.offsetWidth;
       flipping = true;
-      inners.forEach(function (el) { el.style.transition = 'transform 360ms cubic-bezier(.22,.8,.3,1), opacity .3s ease'; el.style.transform = 'translate3d(0,0,0)'; });
-      flipTimer = setTimeout(function () { flipTimer = 0; clearFlip(); normalize(); }, 400);
+      inners.forEach(function (el) { el.style.transition = 'transform 620ms cubic-bezier(.45,0,.2,1)'; el.style.transform = 'translate3d(0,0,0)'; });
+      flipTimer = setTimeout(function () { flipTimer = 0; clearFlip(); normalize(); }, 660);
     }
     function go(g, smooth) {
       target = g;

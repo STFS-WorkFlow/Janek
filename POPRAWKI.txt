@@ -553,3 +553,15 @@ wszystkiego w lewo na pierwszy element.
 - Przesuwanie palcem dalej natywne (bez zmian).
 - Reduced-motion: bez animacji. Awaryjny tryb natywny bez zmian.
 - Wersja plikow: ?v=20261019x. Paczka do wgrania odswiezona.
+
+2026-10-19  SLIDERY: PRZEJSCIE WOLNIEJSZE, PRZEJRZYSTE, BEZ MIGANIA
+Zgloszenie Kamila: animacja byla za szybka, migala i byla niewidoczna.
+- Czas przejscia 620 ms (wczesniej 360 ms) z lagodna krzywa
+  cubic-bezier(.45,0,.2,1): spokojny start i wyhamowanie zamiast ostrego
+  "strzalu".
+- Przyczyna migania: przygaszanie slajdow (opacity). Przy niewidocznym
+  przeskoku z klonu na oryginal karta na chwile przygasala i znow sie
+  rozjasniala. Przygaszanie usuniete, wszystkie slajdy maja pelna
+  widocznosc; aktywny element wskazuja kropki.
+- Pętla bez zmian (z ostatniego w prawo plynnie na pierwszy), sprawdzona.
+- Wersja plikow: ?v=20261019y. Paczka do wgrania odswiezona.
