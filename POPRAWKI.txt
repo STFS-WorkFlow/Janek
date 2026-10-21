@@ -724,3 +724,15 @@ Kamil wgral strone na hosting z jeszcze niepelna polityka. Uzupelnione:
   Mikolowska 5, 44-100 Gliwice. Adres dzialalnosci jednoosobowej firmy bywa
   adresem domowym. Jesli Janek wskaze inny, wystarczy podmienic jedno zdanie.
 - Do wgrania na serwer: tylko polityka-prywatnosci.html (reszta bez zmian).
+
+2026-10-21  HTTPS AKTYWNY, PRZEKIEROWANIE WLACZONE
+- Sprawdzone z zewnatrz: certyfikat janborsa.pl (homeSSL, wydawca home.pl)
+  dziala, nazwy janborsa.pl i www.janborsa.pl, wazny do 03.03.2027,
+  weryfikacja OK, odpowiedz 200 pod https://janborsa.pl.
+- Przeszukane linki i zasoby na zywej stronie (strona glowna i polityka):
+  wszystkie odpowiadaja 200.
+- Na serwerze jest juz nowa polityka (z adresem).
+- .htaccess: odkomentowane przekierowanie 301 na https i na adres bez
+  www (http i www.janborsa.pl prowadza na https://janborsa.pl). Do wgrania
+  na serwer. Po wgraniu sprawdzic, czy nie ma petli przekierowan; w razie
+  petli ponownie zakomentowac cztery linijki RewriteCond/RewriteRule.

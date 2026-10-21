@@ -20,9 +20,9 @@
 # Strona bledu 404 (na GitHub Pages dziala sama, na hostingu Apache trzeba wskazac)
 ErrorDocument 404 /404.html
 
-# PRZEKIEROWANIA NA HTTPS I BEZ WWW: odkomentuj (usun # na poczatku) DOPIERO, gdy certyfikat SSL
-# jest aktywny dla janborsa.pl i www.janborsa.pl. Wczesniej wlaczone sprawi, ze strona sie nie otworzy.
-# RewriteEngine On
-# RewriteCond %{HTTPS} off [OR]
-# RewriteCond %{HTTP_HOST} ^www\. [NC]
-# RewriteRule ^(.*)$ https://janborsa.pl/$1 [R=301,L]
+# Przekierowanie na https i na adres bez www (certyfikat SSL dla janborsa.pl i www.janborsa.pl jest aktywny).
+# Gdyby kiedys przestal dzialac certyfikat, zakomentuj (dodaj # na poczatku) cztery linijki ponizej.
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://janborsa.pl/$1 [R=301,L]
