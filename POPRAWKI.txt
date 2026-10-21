@@ -682,3 +682,29 @@ Bielsko-Biala, rejestr podaje Gliwice.)
 - Do potwierdzenia z Janem przed publikacja: poprawnosc danych i zgoda na
   ich pokazanie.
 - Wersja plikow: ?v=20261019zg. Paczka do wgrania odswiezona.
+
+2026-10-21  DOMENA JANBORSA.PL I PRZYGOTOWANIE POD HOSTING HOME.PL
+Dane z panelu home.pl (konto Jana Borsy, uzyskany dostep):
+- Domena: janborsa.pl, aktywna, wazna do 16.08.2027, "Hosting DNS" wlaczony,
+  ale kolumna "Wlaczone dla uslug" pusta (domena nie jest jeszcze
+  podpieta do hostingu).
+- Hosting: "Hosting Biznes Apache" (SERWER2659851, subskrypcja 8488274),
+  wygasa za ok. 299 dni, ok. 99,5 GB wolne. Domeny: brak, FTP: brak (nie
+  utworzono jeszcze konta FTP). Apache oznacza obsluge .htaccess.
+- Certyfikat SSL: homeSSL Start do domeny (subskrypcja 8488273),
+  janborsa.pl plus 1 dodatkowa nazwa (zwykle www), wydany (zielony
+  status), certyfikat wazny do 03.03.2027, subskrypcja do 16.08.2027.
+Zmiany w plikach:
+- Zastepcze twojadomena.pl zamienione na janborsa.pl (6 miejsc): canonical,
+  og:image, og:url, JSON-LD (index.html), Sitemap w robots.txt, adres w
+  sitemap.xml (lastmod 21.10.2026).
+- .htaccess: dodany ErrorDocument 404 /404.html oraz ZAKOMENTOWANE
+  przekierowanie na https i bez www. Odkomentowac dopiero, gdy certyfikat
+  jest aktywny dla janborsa.pl i www.janborsa.pl (inaczej strona sie nie
+  otworzy).
+- Polityka prywatnosci: hosting wskazany jako home.pl S.A. (serwery w
+  Polsce); zostalo pole na dostawce poczty e-mail oraz adres do
+  korespondencji.
+- Wersja plikow: ?v=20261021a. Paczka do wgrania odswiezona.
+Dalsze kroki w panelu: podpiac domene do hostingu, utworzyc konto FTP,
+wgrac paczke, sprawdzic https, odkomentowac przekierowanie.
