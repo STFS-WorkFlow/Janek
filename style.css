@@ -324,3 +324,5 @@ a,button,summary{touch-action:manipulation}
 .contact-who .reg strong{color:var(--ink)}
 .contact-who .reg a{display:inline-block;margin-top:6px;color:var(--accent);font-weight:700;text-decoration:none;border-bottom:1px solid currentColor}
 .contact-who .reg a:hover{color:#0f2b49}
+/* sekcje fokusowane skryptem po przewinieciu z menu: bez ramki */
+section[tabindex="-1"]:focus,main[tabindex="-1"]:focus{outline:none}

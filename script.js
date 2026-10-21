@@ -268,6 +268,33 @@
    }
   });
 
+  // Czysty adres: klikniecia w odnosniki #sekcja i w logo przewijaja strone, ale NIE dopisuja #hasha do paska adresu.
+  // Bez JS odnosniki dalej dzialaja (zwykle kotwice).
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href^="#"], a[href="./"]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    var behavior = calm ? 'auto' : 'smooth';
+    if (href === './') {
+      if (a.pathname !== location.pathname) return;
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: behavior });
+    } else {
+      var id = href.slice(1);
+      var t = id ? document.getElementById(id) : null;
+      if (id && !t) return;
+      e.preventDefault();
+      if (!t || id === 'top' || id === 'start') { window.scrollTo({ top: 0, behavior: behavior }); }
+      else {
+        t.scrollIntoView({ behavior: behavior, block: 'start' });
+        t.setAttribute('tabindex', '-1');
+        t.focus({ preventScroll: true });
+      }
+    }
+    if (location.hash && window.history && history.replaceState) { history.replaceState(null, '', location.pathname + location.search); }
+  });
+
   var burger = document.getElementById('burger');
   var drawer = document.getElementById('drawer');
   var backdrop = document.getElementById('backdrop');

@@ -736,3 +736,25 @@ Kamil wgral strone na hosting z jeszcze niepelna polityka. Uzupelnione:
   www (http i www.janborsa.pl prowadza na https://janborsa.pl). Do wgrania
   na serwer. Po wgraniu sprawdzic, czy nie ma petli przekierowan; w razie
   petli ponownie zakomentowac cztery linijki RewriteCond/RewriteRule.
+
+2026-10-21  CZYSTE ADRESY: BEZ #HASHA, INDEX.HTML I .HTML W PASKU ADRESU
+Zgloszenie Kamila: w pasku adresu pojawialy sie #top, #oferta, index.html
+itp. Ma byc czysty adres janborsa.pl.
+- Odnosniki #sekcja (menu, szuflada, widget pomocy, przyciski, pomin do
+  tresci): skrypt przewija plynnie do sekcji, ale NIE dopisuje hasha do
+  adresu. Jesli adres mial juz hash (np. z linku), jest czyszczony.
+  Bez JS odnosniki dzialaja jak zwykle kotwice.
+- Logo: href="./" zamiast #top. Na stronie glownej przewija na gore bez
+  zmiany adresu; z innej strony prowadzi na janborsa.pl.
+- Polityka prywatnosci: adres /polityka-prywatnosci zamiast
+  /polityka-prywatnosci.html (link w stopce i .htaccess). Przyciski
+  wstecz w polityce prowadza na "./" zamiast index.html.
+- .htaccess: 301 z /index.html na /, 301 z
+  /polityka-prywatnosci.html na /polityka-prywatnosci oraz wewnetrzne
+  przepisanie czystego adresu na plik. Dziala dopiero po wgraniu na serwer
+  (podglad lokalny nie czyta .htaccess). Link wzgledny (bez /) dziala tez
+  na podgladzie GitHub Pages.
+- Fokus po przewinieciu: sekcja dostaje tabindex=-1 (czytniki ekranu),
+  ramka fokusa wylaczona.
+- Wersja plikow: ?v=20261021c. Paczka do wgrania odswiezona (index.html,
+  polityka-prywatnosci.html, script.js, style.css, .htaccess).
