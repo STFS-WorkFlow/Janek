@@ -708,3 +708,19 @@ Zmiany w plikach:
 - Wersja plikow: ?v=20261021a. Paczka do wgrania odswiezona.
 Dalsze kroki w panelu: podpiac domene do hostingu, utworzyc konto FTP,
 wgrac paczke, sprawdzic https, odkomentowac przekierowanie.
+
+2026-10-21  POLITYKA PRYWATNOSCI: BRAKUJACE DANE UZUPELNIONE (STRONA JUZ NA HOME.PL)
+Kamil wgral strone na hosting z jeszcze niepelna polityka. Uzupelnione:
+- Pkt 1 (administrator): adres miejsca wykonywania dzialalnosci z publicznego
+  rejestru KNF (ul. Jozefa Poniatowskiego 25/14, 44-100 Gliwice) oraz
+  kontakt w sprawach danych osobowych (e-mail i telefon).
+- Pkt 4 (odbiorcy): home.pl S.A. (serwery w Polsce) jako hosting oraz
+  dostawca poczty e-mail w domenie agentpzu.pl. Ustalone z DNS: rekordy MX
+  domeny agentpzu.pl wskazuja na serwery mx1 do mx8.pzu.pl, czyli pocztę
+  obsluguje PZU.
+- Data aktualizacji 21.10.2026. W polityce nie ma juz zadnych zoltych pól.
+- DO POTWIERDZENIA Z JANEM: ktory adres ma byc publiczny. W rejestrze KNF
+  jest ul. Jozefa Poniatowskiego 25/14, a w profilu Google Jana widnieje
+  Mikolowska 5, 44-100 Gliwice. Adres dzialalnosci jednoosobowej firmy bywa
+  adresem domowym. Jesli Janek wskaze inny, wystarczy podmienic jedno zdanie.
+- Do wgrania na serwer: tylko polityka-prywatnosci.html (reszta bez zmian).
