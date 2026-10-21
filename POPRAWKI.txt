@@ -758,3 +758,18 @@ itp. Ma byc czysty adres janborsa.pl.
   ramka fokusa wylaczona.
 - Wersja plikow: ?v=20261021c. Paczka do wgrania odswiezona (index.html,
   polityka-prywatnosci.html, script.js, style.css, .htaccess).
+
+2026-10-22  FAVICON, KTORA GOOGLE MOZE ODCZYTAC (LOGO W WYNIKACH)
+Strona jest juz w Google (site:janborsa.pl pokazuje wpis, na "jan borsa"
+jest na 3. miejscu), ale w wyniku widac szara kule zamiast logo.
+- Przyczyna: ikona byla wpisana w kod jako adres "data:" (SVG w linku).
+  Google nie czyta takich ikon, wymaga osobnego pliku pod stalym adresem.
+- Naprawa: pliki favicon.ico (16, 32, 48 px, w katalogu glownym),
+  favicon.svg, images/favicon-48.png, favicon-96.png, favicon-192.png
+  (granatowy kwadrat, biale "JB"; rozmiary w wielokrotnosciach 48 px, jak
+  wymaga Google). Linki rel="icon" w index.html, polityce i 404.html;
+  apple-touch-icon zostaje.
+- Po wgraniu na serwer: w Search Console poprosic o ponowne zindeksowanie
+  strony glownej. Google podmienia ikone zwykle po kilku dniach do kilku
+  tygodni, nie od razu.
+- Wersja plikow: ?v=20261022a. Paczka do wgrania odswiezona.
