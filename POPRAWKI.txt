@@ -773,3 +773,21 @@ jest na 3. miejscu), ale w wyniku widac szara kule zamiast logo.
   strony glownej. Google podmienia ikone zwykle po kilku dniach do kilku
   tygodni, nie od razu.
 - Wersja plikow: ?v=20261022a. Paczka do wgrania odswiezona.
+
+2026-10-26  POLITYKA PRYWATNOSCI: GOOGLE SEARCH CONSOLE
+Pytanie Kamila: czy Search Console jest uwzgledniona w polityce.
+- Stan: strona zweryfikowana w Search Console (rekord TXT w DNS), dane z
+  3 miesiecy (okno od 20.10): 6 klikniec, 16 wyswietlen, CTR 37,5 proc.,
+  srednia pozycja 3,6.
+- Search Console nie dodaje na strone zadnego skryptu ani ciasteczek,
+  dostarcza tylko zbiorcze statystyki z wyszukiwarki, wiec nie jest to
+  przetwarzanie danych odwiedzajacych po stronie strony. Zapis w polityce
+  nie byl wiec obowiazkowy, ale dodany dla przejrzystosci.
+- Dodany punkt 8 "Wyszukiwarki i statystyki wyszukiwania": strona jest
+  widoczna w wyszukiwarkach, wlasciciel uzywa Google Search Console do
+  zbiorczych statystyk (wyswietlenia, klikniecia), na stronie nie ma
+  skryptu Google. Dotychczasowy pkt 8 (cookies) jest teraz punktem 9.
+  Data aktualizacji 26.10.2026.
+- Jesli dojdzie analityka odwiedzin (np. Umami na serwerze), trzeba
+  dopisac osobny punkt: jakie dane, gdzie przetwarzane, brak ciasteczek.
+- Do wgrania na serwer: polityka-prywatnosci.html.
