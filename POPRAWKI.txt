@@ -940,3 +940,10 @@ naturalne):
   zgoda, cofniecie zgody, brak bledow w konsoli.
 - NIE wgrywac jeszcze na serwer: czekamy na Measurement ID (G-XXXXXXXXXX).
 - Wersja plikow: ?v=20261124c.
+
+2026-11-24 (aktywacja GA4)
+- Wpisano Measurement ID G-ZNT68LZH18 w index.html (meta ga-id). Analityka
+  i baner zgody sa teraz aktywne. Wersja plikow: ?v=20261124d.
+- DO WGRANIA RAZEM: index.html, script.js, style.css, polityka-prywatnosci.html.
+- Po wgraniu: wejsc na strone, kliknac "Akceptuje", w GA4 (Raporty w czasie
+  rzeczywistym) powinien pojawic sie 1 aktywny uzytkownik.
