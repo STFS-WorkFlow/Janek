@@ -825,3 +825,23 @@ Nowa sekcja (id="opinie") miedzy "Jak pracuje" a "Materialy", tlo jasnoszare.
   odlozona).
 - Wersja plikow: ?v=20261123a. Paczka do wgrania odswiezona (index.html,
   script.js, style.css, polityka-prywatnosci.html).
+
+2026-11-23  OPINIE: LINK Z PANELU I STATYCZNY LICZNIK
+- Przycisk glowny "Wystaw opinie w Google" prowadzi na link z panelu
+  wizytowki Jana: https://g.page/r/CXWPvZvODEOFEAE/review (otwiera okno
+  wystawienia opinii). Drugi przycisk "Zobacz wszystkie opinie" prowadzi na
+  wyszukiwanie Google "Jan Borsa agent ubezpieczeniowy Gliwice" (pokazuje
+  wizytowke z opiniami); gdy bedzie bezposredni link do profilu, podmienic.
+- Licznik STATYCZNY pod naglowkiem sekcji: 5,0, piec gwiazdek, "7 opinii w
+  Google", "Stan na 23.11.2026" (stan z wizytowki Jana w dniu dodania).
+  Aktualizowany recznie przez Kamila.
+  JAK AKTUALIZOWAC (index.html, sekcja #opinie, klasa rating-line):
+    id="g-rating"  ocena, np. 4,9
+    id="g-count"   liczba z odmiana: 1 opinia, 2 do 4 opinie, 5 i wiecej
+                   opinii (np. "12 opinii")
+    id="g-date"    data aktualizacji, np. 15.12.2026
+  Po zmianie wgrac index.html (podbic ?v= jesli zmieniono CSS lub JS).
+  Uwaga: licznik pokazywac tylko aktualny; nieaktualny moze wprowadzac w
+  blad (zasady o opiniach konsumenckich), dlatego jest data.
+- Wersja plikow: ?v=20261123b. Paczka do wgrania odswiezona (index.html,
+  style.css, polityka-prywatnosci.html).

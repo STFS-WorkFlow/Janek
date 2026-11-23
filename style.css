@@ -337,3 +337,9 @@ section[tabindex="-1"]:focus,main[tabindex="-1"]:focus{outline:none}
 .review .who small{display:block;margin-top:2px;font-weight:400;font-size:13px;color:var(--muted)}
 .reviews-cta{margin-top:32px}
 @media(max-width:800px){.review{padding:22px}.review blockquote{font-size:16px}.reviews-cta{margin-top:12px}.reviews-cta .btn{flex:1 1 100%}}
+/* licznik opinii (statyczny, aktualizowany recznie w index.html) */
+.rating-line{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;margin:18px 0 0 !important;font-size:18px;color:var(--ink) !important}
+.rating-line strong{font-size:34px;line-height:1;letter-spacing:-.03em}
+.rating-line .stars{color:#f0a500;font-size:20px;letter-spacing:2px;line-height:1}
+.rating-line small{flex-basis:100%;font-size:13px;color:var(--muted)}
+.reviews-cta{gap:12px}
