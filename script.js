@@ -295,6 +295,73 @@
     if (location.hash && window.history && history.replaceState) { history.replaceState(null, '', location.pathname + location.search); }
   });
 
+  // Analityka Google Analytics 4: tylko po zgodzie. Identyfikator (G-...) jest w <meta name="ga-id">.
+  // Gdy pusty, nic sie nie dzieje: brak banera, brak skryptow, brak cookies.
+  (function () {
+    var meta = document.querySelector('meta[name="ga-id"]');
+    var id = meta ? (meta.getAttribute('content') || '').trim() : '';
+    if (!/^G-[A-Z0-9]{6,}$/.test(id)) return;
+    var KEY = 'jb_analytics_consent';
+    var bar = document.getElementById('cookie-bar');
+    var opener = document.getElementById('cookie-settings');
+    var loaded = false;
+    function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function write(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+    function loadGA() {
+      window['ga-disable-' + id] = false;
+      if (loaded) { if (window.gtag) { gtag('consent', 'update', { analytics_storage: 'granted' }); } return; }
+      loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gtag('js', new Date());
+      gtag('config', id, { allow_google_signals: false, allow_ad_personalization_signals: false });
+      var sc = document.createElement('script');
+      sc.async = true;
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+      document.head.appendChild(sc);
+    }
+    function clearCookies() {
+      var host = location.hostname, parts = host.split('.');
+      var domains = ['', host, '.' + host];
+      if (parts.length > 2) { domains.push('.' + parts.slice(-2).join('.')); }
+      document.cookie.split(';').forEach(function (c) {
+        var name = c.split('=')[0].trim();
+        if (name.indexOf('_ga') === 0) {
+          domains.forEach(function (d) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+          });
+        }
+      });
+    }
+    function revoke() {
+      window['ga-disable-' + id] = true;
+      if (window.gtag) { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+      clearCookies();
+    }
+    function show() { if (bar) { bar.hidden = false; } }
+    function hide() { if (bar) { bar.hidden = true; } }
+    if (opener) {
+      opener.hidden = false;
+      opener.addEventListener('click', show);
+    }
+    var acc = document.getElementById('cookie-accept');
+    var dec = document.getElementById('cookie-decline');
+    if (acc) { acc.addEventListener('click', function () { write('granted'); hide(); loadGA(); }); }
+    if (dec) { dec.addEventListener('click', function () { write('denied'); hide(); revoke(); }); }
+    var state = read();
+    if (state === 'granted') { loadGA(); }
+    else if (state === 'denied') { window['ga-disable-' + id] = true; }
+    else { show(); }
+    // zdarzenia dla wlasciciela: klikniecia w telefon i e-mail (tylko po zgodzie)
+    document.addEventListener('click', function (e) {
+      if (!loaded || !window.gtag || window['ga-disable-' + id]) return;
+      var a = e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="mailto:"]') : null;
+      if (!a) return;
+      gtag('event', 'contact_click', { method: a.getAttribute('href').indexOf('tel:') === 0 ? 'telefon' : 'email' });
+    });
+  })();
+
   var burger = document.getElementById('burger');
   var drawer = document.getElementById('drawer');
   var backdrop = document.getElementById('backdrop');

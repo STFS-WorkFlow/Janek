@@ -924,3 +924,19 @@ naturalne):
   Zmiany w wynikach pojawiaja sie po kilku dniach do kilku tygodni.
 - Do wgrania: index.html (polityka bez zmian poza wersja pliku).
 - Wersja plikow: ?v=20261124b. Paczka do wgrania odswiezona.
+
+2026-11-24 (analityka Google Analytics 4 + baner zgody)
+- Dodano mechanizm analityki GA4 dzialajacy TYLKO po zgodzie odwiedzajacego:
+  baner "Odrzucam / Akceptuje", przycisk "Ustawienia cookies" w stopce
+  (cofniecie zgody usuwa cookies _ga), reklamy i personalizacja wylaczone,
+  zdarzenie contact_click (klikniecie w telefon i e-mail).
+- Identyfikator GA4 wpisuje sie w jednym miejscu: index.html,
+  <meta name="ga-id" content="">. Dopoki jest pusty, analityka jest
+  nieaktywna: brak banera, brak skryptow Google, brak cookies.
+- Polityka prywatnosci: nowy pkt 10 "Analityka (Google Analytics)",
+  przepisany pkt 11 "Pliki cookies", zaktualizowana data (24.11.2026).
+  UWAGA: polityke wgrywac na serwer razem z aktywacja analityki.
+- Przetestowane lokalnie (desktop i mobile): pierwsza wizyta, odmowa,
+  zgoda, cofniecie zgody, brak bledow w konsoli.
+- NIE wgrywac jeszcze na serwer: czekamy na Measurement ID (G-XXXXXXXXXX).
+- Wersja plikow: ?v=20261124c.
