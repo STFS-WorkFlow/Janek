@@ -845,3 +845,12 @@ Nowa sekcja (id="opinie") miedzy "Jak pracuje" a "Materialy", tlo jasnoszare.
   blad (zasady o opiniach konsumenckich), dlatego jest data.
 - Wersja plikow: ?v=20261123b. Paczka do wgrania odswiezona (index.html,
   style.css, polityka-prywatnosci.html).
+
+2026-11-23  DECYZJA: TRZECIA OPINIA ZOSTAJE
+Kamil zdecydowal, ze opinia Dobrochny B. zostaje na stronie bez adnotacji o
+pokrewienstwie. Zapis w dzienniku: sekcja jest podpisana "Opinie z Google"
+(a nie "opinie klientow"), a kazda opinia ma dopisek "Opinia z Google", wiec
+nie twierdzimy, ze autorka jest klientem. Ryzyko: Google moze usunac opinie
+wystawiona przez osobe powiazana z firma (konflikt interesow); wtedy usunac
+ja tez ze strony i zaktualizowac licznik. Do decyzji Jana, jesli
+mialby sie pojawic zarzut o wprowadzanie w blad.
