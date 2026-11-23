@@ -880,3 +880,47 @@ Gliwice", bo strona nie zawierala tego slowa.
   tytulu i opisu w wynikach pojawia sie zwykle po kilku dniach do tygodni.
 - Do wgrania: index.html, polityka-prywatnosci.html, sitemap.xml.
 - Wersja plikow: ?v=20261124a. Paczka do wgrania odswiezona.
+
+2026-11-24  SEO: SLOWA KLUCZOWE (AUDYT I POPRAWKI)
+Audyt przed zmianami (tresc strony 687 slow): brak fraz "ubezpieczenia na
+zycie" w tytule i opisie, "agent ubezpieczeniowy" tylko 1 raz i nie w
+tytule/naglowkach, "polisa na zycie" 0 razy, brak okolic/regionu, miasto
+tylko w tytule i opisie, FAQ bez fraz. Zmiany (bez upychania, zdania
+naturalne):
+- Tytul: "Jan Borsa: ubezpieczenia na zycie i grupowe w Gliwicach" (55 zn.).
+- Opis (158 zn.): "Jan Borsa, agent ubezpieczeniowy w Gliwicach. Ubezpieczenia
+  na zycie, ubezpieczenia grupowe dla firm i pakiety medyczne dla
+  pracownikow. 15 lat doswiadczenia." Podobnie og:title i og:description.
+- Hero (naglowek nad H1): "Agent ubezpieczeniowy w Gliwicach • PZU Zycie •
+  trener sprzedazy" (zamiast "15 lat doswiadczenia", ktore zostaje w
+  kafelku "15+ lat w branzy"). H1 bez zmian ("Ubezpieczenia bez sciemy.").
+- Karty oferty: tytuly "Ubezpieczenia grupowe dla firm", "Pakiety medyczne
+  dla pracownikow", "Ubezpieczenie na zycie i zdrowie"; opis trzeciej karty:
+  "Indywidualna polisa na zycie, ochrona na wypadek powaznego zachorowania,
+  wypadku i pobytu w szpitalu oraz zabezpieczenie bliskich." Reszta bez
+  zmian. (Jesli klientowi nie spodobaja sie zmiany tytulow, latwo cofnac.)
+- "O mnie": nowy akapit: "Jestem agentem ubezpieczeniowym PZU Zycie z
+  Gliwic. Pomagam firmom i ich pracownikom (ubezpieczenia grupowe i pakiety
+  medyczne) oraz rodzinom w Gliwicach i okolicach. Pierwsza rozmowe mozemy
+  odbyc telefonicznie, bez zobowiazan." UWAGA: "i okolicach" to zalozenie,
+  do potwierdzenia z Janem (obszar dzialania).
+- FAQ: 4 nowe pytania (razem 10): roznica polisa grupowa a indywidualna,
+  od czego zalezy skladka (ogolnie, bez kwot), czy pakiet medyczny jest dla
+  kazdej firmy (warunki zalezne od oferty ubezpieczyciela), na czym polega
+  audyt polisy. Dane strukturalne FAQPage przebudowane i zgodne co do znaku
+  z widoczna trescia.
+- Person (dane dla Google): nowy opis i knowsAbout (ubezpieczenia na zycie,
+  polisa na zycie, ubezpieczenia grupowe, ubezpieczenia dla firm, pakiety
+  medyczne dla pracownikow, audyt polisy).
+- Wynik audytu po zmianach (tresc 876 slow): tytul i opis zawieraja frazy
+  "ubezpieczenia na zycie", "agent ubezpieczeniowy", "Gliwice";
+  "polisa na zycie" 3 razy; "ubezpieczenia grupowe" 10 razy; "dla
+  pracownikow" 9 razy.
+- NIE zrobione (rekomendacja na pozniej): osobne podstrony (np.
+  "Ubezpieczenia grupowe dla firm Gliwice", "Pakiety medyczne", "Polisa
+  na zycie dla rodziny") i artykuly z odcinkow wideo; wymagaja decyzji i
+  tresci od Jana.
+- Po wgraniu: poprosic w Search Console o ponowne zindeksowanie strony.
+  Zmiany w wynikach pojawiaja sie po kilku dniach do kilku tygodni.
+- Do wgrania: index.html (polityka bez zmian poza wersja pliku).
+- Wersja plikow: ?v=20261124b. Paczka do wgrania odswiezona.
