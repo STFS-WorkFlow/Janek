@@ -854,3 +854,29 @@ nie twierdzimy, ze autorka jest klientem. Ryzyko: Google moze usunac opinie
 wystawiona przez osobe powiazana z firma (konflikt interesow); wtedy usunac
 ja tez ze strony i zaktualizowac licznik. Do decyzji Jana, jesli
 mialby sie pojawic zarzut o wprowadzanie w blad.
+
+2026-11-24  SLOWO KLUCZOWE "GLIWICE" NA STRONIE (SEO LOKALNE) I LINK DO PROFILU
+Zgloszenie Kamila: Google przy wyszukiwaniu z miastem pisze "Nie zawiera:
+Gliwice", bo strona nie zawierala tego slowa.
+- Tytul strony: "Jan Borsa: Ubezpieczenia bez ściemy | Gliwice" (45 znakow).
+- Opis (meta description, 162 znaki): "Jan Borsa, agent ubezpieczeniowy w
+  Gliwicach: ubezpieczenia zycia i zdrowia, rozwiazania dla firm,
+  ubezpieczenia grupowe i pakiety medyczne. 15 lat doswiadczenia."
+  Podobnie og:title i og:description (podglad linku w komunikatorach).
+- Widoczna tresc: sekcja "O mnie" ("...a swoja dzialalnosc prowadze w
+  Gliwicach"), blok kontaktowy (linia "Gliwice" pod uslugami), alt zdjecia
+  hero ("Jan Borsa, agent ubezpieczeniowy w Gliwicach").
+- Dane strukturalne Person: opis z miastem, address (tylko miejscowosc
+  Gliwice, kraj PL, BEZ ulicy) i areaServed Gliwice.
+- Miasto zaczerpniete z publicznego rejestru KNF (miejsce wykonywania
+  dzialalnosci) i z wizytowki Google Jana. Adres ulicy nadal nigdzie nie
+  jest pokazany na stronie poza polityka prywatnosci.
+- Przycisk "Zobacz wszystkie opinie": zamiast wyszukiwania Google teraz
+  bezposredni link do profilu w Mapach (g.page/r/CXWPvZvODEOFEAE), sprawdzony:
+  przekierowuje na wizytowke Jana.
+- Sitemap: lastmod 24.11.2026.
+- Po wgraniu na serwer: w Search Console poprosic o ponowne zindeksowanie
+  strony glownej (Sprawdzanie adresu URL, Poprosic o zindeksowanie). Zmiana
+  tytulu i opisu w wynikach pojawia sie zwykle po kilku dniach do tygodni.
+- Do wgrania: index.html, polityka-prywatnosci.html, sitemap.xml.
+- Wersja plikow: ?v=20261124a. Paczka do wgrania odswiezona.
