@@ -98,7 +98,7 @@
   // Animacja (skala, przezroczystosc) jest na ELEMENCIE WEWNATRZ slajdu, a nie na slajdzie,
   // bo transform na elemencie z scroll-snap zmienia punkty zatrzasku i pasek "wraca" (nie dalo sie przesuwac).
   var mqSlider = window.matchMedia('(max-width:800px)');
-  document.querySelectorAll('.cards, .process, .media').forEach(function (track) {
+  document.querySelectorAll('.cards, .process, .media, .reviews').forEach(function (track) {
    try {
     var items = Array.prototype.slice.call(track.children);
     var n = items.length;

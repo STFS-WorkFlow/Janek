@@ -791,3 +791,37 @@ Pytanie Kamila: czy Search Console jest uwzgledniona w polityce.
 - Jesli dojdzie analityka odwiedzin (np. Umami na serwerze), trzeba
   dopisac osobny punkt: jakie dane, gdzie przetwarzane, brak ciasteczek.
 - Do wgrania na serwer: polityka-prywatnosci.html.
+
+2026-11-23  SEKCJA "OPINIE Z GOOGLE"
+Nowa sekcja (id="opinie") miedzy "Jak pracuje" a "Materialy", tlo jasnoszare.
+- Trzy opinie z profilu Jana w Google, tresc dokladnie z Google (w tym
+  emotka w pierwszej): Ewa M. ("Polecam p. Janka..."), Beata K. ("Kultura,
+  klasa, szeroka wiedza...") i Dobrochna B. ("Profesjonalista, bardzo
+  pomocny..."). Podpisy w formie imie i inicjal nazwiska (decyzja Kamila,
+  bezpieczniejsze dla danych osobowych). Kazda z 5 gwiazdkami i dopiskiem
+  "Opinia z Google".
+- UWAGA DO POTWIERDZENIA Z JANEM: autorka trzeciej opinii ma to samo
+  nazwisko co Jan. Jesli to osoba z rodziny, nie powinna byc pokazywana jako
+  zwykla opinia klienta (wprowadzanie w blad, a Google traktuje takie
+  opinie jako konflikt interesow). Wtedy usunac trzeci blok <article
+  class="review"> z index.html albo zastapic opinia innego klienta.
+- Przycisk "Zobacz wszystkie opinie w Google" (nowa karta). TYMCZASOWY
+  adres: wyszukiwanie Google "Jan Borsa agent ubezpieczeniowy Gliwice".
+  Podmienic na link do opinii z panelu wizytowki ("Poproś o opinie" lub
+  link do profilu) w jednym miejscu: index.html, sekcja #opinie, klasa
+  reviews-cta.
+- Desktop: 3 rowne kolumny. Telefon: slider z petla (strzalki, kropki,
+  przesuwanie palcem), jak oferta i filmy; wspolny kod slidera (selektor
+  .reviews). Sprawdzone: 3 kolejne klikniecia zawracaja na pierwszy slajd,
+  brak bledow, brak poziomego scrolla.
+- Menu: link "Opinie" w naglowku i w szufladzie.
+- Bez danych strukturalnych dla opinii (Google nie pokazuje gwiazdek dla
+  opinii wlasnych firmy na jej stronie, a znacznik moglby naruszac wytyczne).
+- Polityka prywatnosci: nowy pkt 8 "Opinie z Google" (tresc, ocena, imie i
+  inicjal, interes prawnie uzasadniony, usuniecie na zadanie, link do
+  Google); dotychczasowe punkty przesuniete na 9 i 10; Google dodany do
+  listy linkow zewnetrznych; data 23.11.2026.
+- Licznik opinii na zywo: nie dodany (wymaga Places API przez n8n; decyzja
+  odlozona).
+- Wersja plikow: ?v=20261123a. Paczka do wgrania odswiezona (index.html,
+  script.js, style.css, polityka-prywatnosci.html).

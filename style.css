@@ -326,3 +326,14 @@ a,button,summary{touch-action:manipulation}
 .contact-who .reg a:hover{color:#0f2b49}
 /* sekcje fokusowane skryptem po przewinieciu z menu: bez ramki */
 section[tabindex="-1"]:focus,main[tabindex="-1"]:focus{outline:none}
+/* sekcja opinii */
+.reviews-sec{background:var(--bg)}
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.reviews>*{min-width:0}
+.review{display:flex;flex-direction:column;gap:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px}
+.review .stars{color:#f0a500;font-size:20px;letter-spacing:3px;line-height:1}
+.review blockquote{margin:0;font-size:17px;line-height:1.6;color:var(--ink)}
+.review .who{margin-top:auto;font-weight:700}
+.review .who small{display:block;margin-top:2px;font-weight:400;font-size:13px;color:var(--muted)}
+.reviews-cta{margin-top:32px}
+@media(max-width:800px){.review{padding:22px}.review blockquote{font-size:16px}.reviews-cta{margin-top:12px}.reviews-cta .btn{flex:1 1 100%}}
