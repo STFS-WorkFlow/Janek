@@ -947,3 +947,11 @@ naturalne):
 - DO WGRANIA RAZEM: index.html, script.js, style.css, polityka-prywatnosci.html.
 - Po wgraniu: wejsc na strone, kliknac "Akceptuje", w GA4 (Raporty w czasie
   rzeczywistym) powinien pojawic sie 1 aktywny uzytkownik.
+
+2026-11-24 (poprawka identyfikatora GA4)
+- Poprzedni ID (G-ZNT68LZH18) nalezal do strumienia stfs.pl, wiec ruch Janka
+  trafialby do statystyk STFS. Utworzono osobna usluge "janborsa" i wpisano
+  jej ID: G-WTMNRVYCN1. Wersja plikow: ?v=20261124e.
+- DO WGRANIA: index.html i polityka-prywatnosci.html (obie zmienily wersje ?v=).
+- Dostep dla Janka tylko na poziomie USLUGI janborsa (rola Wyswietlajacy),
+  nie na koncie stfs.
